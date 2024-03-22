@@ -1,0 +1,201 @@
+/* Estilos generales para el inicio de la página web */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    background-image: url('../static/fondoInicio.jpeg');
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    top: 0; /* Coloca el elemento de fondo en la parte superior de la página */
+    left: 0; /* Coloca el elemento de fondo en la parte izquierda de la página */
+    width: 100%; /* Establece el ancho al 100% del cuerpo */
+    height: 100%; 
+    filter: brightness(30%); 
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0px;
+    color: #fff; /* Cambia el color del texto a gris oscuro (#333) */
+    transition: color 0.3s; /* Agrega una transición de color de 0.3 segundos */
+    cursor: pointer; /* Cambia el cursor cuando pasa sobre el h1 */
+    font-size: 70px; /* Aumenta el tamaño de la fuente a 36px */
+
+}
+
+/* Cambia el color del texto cuando el cursor pasa sobre el h1 */
+h1:hover {
+    color: #007bff;  
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.col-md-4 {
+    flex: 1;
+    max-width: 33.33%; /* Para que ocupen el 33.33% del ancho cada uno */
+    
+}
+
+/* Barra superior */
+.navbar {
+    height: cover;
+    color: #fff; /* Texto blanco */
+    text-align: right;
+    padding: 10px 0;
+    margin-right: 10px;
+}
+
+/* Botón "Contact Us" */
+#contactBtn {
+    background-color: #000; 
+    color: #fff; 
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s; 
+}
+
+#Btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50px; 
+}
+
+/* Cuadro de texto (inicialmente oculto) */
+#contactBox {
+    display: none;
+    background-color: #000; /* Fondo blanco */
+    color: #fff; /* Texto negro */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: absolute;
+    top: 50px; /* Posición debajo de la barra superior */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%);
+    z-index: 1; /* Para que esté encima de otros elementos */
+}
+
+/* Estilo para el botón "Cerrar" del cuadro de texto */
+.closeBtn {
+    background-color: #ff0000; /* Fondo gris claro */
+    color: #fff; /* Texto negro */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 100px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+        /* Cuadro de texto (inicialmente oculto) */
+#infoBox {
+    display: none;
+    background-color: #000; /* Fondo blanco */
+    color: #fff; /* Texto negro */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: absolute;
+    top: 50px; /* Posición debajo de la barra superior */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translateX(-50%);
+    z-index: 1; /* Para que esté encima de otros elementos */
+    text-align: left;
+}
+
+/* Estilos de los recuadros */
+.card {
+    background-color: #f0f0f0;
+    border: 1px solid #000;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; 
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+}
+
+.card-title {
+    font-size: 20px;
+}
+
+.card-text {
+    font-size: 16px;
+}
+
+.card-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+/* Estilos de los botones */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50px; 
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+#Btn:hover {
+    background-color: #0056b3;
+}
+
+#contactBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+}
