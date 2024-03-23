@@ -1,14 +1,10 @@
 import mysql.connector
 
-def conectar(hostdb, userdb, passwordb, principal_db):
+
+def conectar(authentication):
     try:
         # Start the MySQL database connection.
-        connection2db = mysql.connector.connect(
-            host = hostdb,
-            user = userdb,
-            password = passwordb,
-            database = principal_db
-        )
+        connection2db = mysql.connector.connect(authentication)
         print('Successful connection to the database')
         return connection2db
     except mysql.connector.Error as error:
