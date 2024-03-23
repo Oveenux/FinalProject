@@ -1,7 +1,7 @@
 # **MONITORING OF ENVIRONMENTAL AND ELECTRICAL VARIABLES IN A NON INTERCONNECTED MEDICAL CENTER**
 
-<span style="color:red">Este texto está en rojo</span>
-### WARNING: DEVELOPMENT IN PROGRESS!
+<span style="color:#ff0000">Este texto está en rojo</span>
+## WARNING: DEVELOPMENT IN PROGRESS!
 
 **UNIVERSIDAD DEL NORTE**  
 **Departamento de Ingeniería Eléctrica y Electrónica**  
