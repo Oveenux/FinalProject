@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from host_AD import hostConfig
+from access_config.host_AD import hostConfig
 app = Flask(__name__)
 
 @app.route('/')

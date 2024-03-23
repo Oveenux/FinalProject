@@ -1,3 +1,2 @@
-# Ignore configuration files.
-DB_Access.py
-host_AD.py
+# Ignore configuration folder and files.
+access_config/
