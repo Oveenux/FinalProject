@@ -1,6 +1,7 @@
 # **MONITORING OF ENVIRONMENTAL AND ELECTRICAL VARIABLES IN A NON INTERCONNECTED MEDICAL CENTER**
 
-#### **WARNING: DEVELOPMENT IN PROGRESS!
+<span style="color:red">Este texto está en rojo</span>
+### WARNING: DEVELOPMENT IN PROGRESS!
 
 **UNIVERSIDAD DEL NORTE**  
 **Departamento de Ingeniería Eléctrica y Electrónica**  
@@ -13,6 +14,5 @@ Ernesto Daniel Jaramillo Durango    {*edjaramillo@uninorte.edu.co*}
 Ing. María Gabriela Calle Torres  
 Ing. Rafael De Jesus Castillo Sierra  
 
-1. **ABSTRACT**
-
+1. **ABSTRACT**  
 This project develops a monitoring system for environmental and electrical variables called **EcoMedix**.
