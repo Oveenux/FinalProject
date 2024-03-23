@@ -40,7 +40,6 @@ sudo apt install git -y
 echo -e "\e[32m Installed git \e[0m"
 repetir_caracter '-'
 git clone https://github.com/Oveenux/FinalProject.git
-git pull
 echo -e "\e[32m Cloned repository \e[0m"
 repetir_caracter '='
 
