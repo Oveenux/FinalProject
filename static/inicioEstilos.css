@@ -1,7 +1,7 @@
 /* Estilos generales para el inicio de la página web */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Times New Roman", Times, serif;
     margin: 0;
     padding: 0;
     position: relative;
@@ -38,7 +38,10 @@ h1 {
     transition: color 0.3s; /* Agrega una transición de color de 0.3 segundos */
     cursor: pointer; /* Cambia el cursor cuando pasa sobre el h1 */
     font-size: 70px; /* Aumenta el tamaño de la fuente a 36px */
+}
 
+h1 .letra-i {
+            color: #88B14B; /* Cambiar color de la letra */
 }
 
 /* Cambia el color del texto cuando el cursor pasa sobre el h1 */
@@ -80,7 +83,9 @@ h1:hover {
 }
 
 #Btn {
-    display: inline-block;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    display: inline-block; 
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -191,6 +196,15 @@ h1:hover {
 
 #contactBtn:hover {
     background-color: #0056b3;
+}
+
+.black-button {
+    background-color: black;
+    color: white; /* Cambia el color del texto para que sea visible en el botón negro */
+    border: none; /* Elimina el borde del botón si no se desea */
+    padding: 10px 20px; /* Ajusta el relleno del botón según sea necesario */
+    border-radius: 5px; /* Agrega esquinas redondeadas al botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 }
 
 /* Estilos para dispositivos móviles */

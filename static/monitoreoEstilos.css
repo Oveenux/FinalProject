@@ -1,0 +1,97 @@
+/* Estilos para plantilla de monitoreo y gráficas de la página web */
+
+body {
+    font-family: "Times New Roman", Times, serif;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    background-image: url('../static/fondominimalista.png');
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    top: 0; /* Coloca el elemento de fondo en la parte superior de la página */
+    left: 0; /* Coloca el elemento de fondo en la parte izquierda de la página */
+    width: 100%; /* Establece el ancho al 100% del cuerpo */
+    height: 100%; 
+    z-index: -1;
+    opacity: 0.15;
+}
+
+/* Estilos para la imagen */
+.logo {
+    float: left; /* Alinear a la izquierda */
+    margin-left: 30px;
+    margin-right: 10px; /* Margen a la derecha */
+    width: 150px; /* Ancho de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+}
+/* Estilos para la barra superior */
+
+.navbar {
+    height: cover;
+    color: #fff; /* Texto blanco */
+    text-align: right;
+    width: 100%;
+}
+
+/* Estilos para el botón */
+.navbar button {
+    text-align: right;
+    display: flex;
+    margin-right: 30px;
+    margin-left: auto;
+    background-color: #000; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 4px 20px; /* Espaciado interno */
+    border-radius: 50px; /* Borde redondeado */
+    cursor: pointer; /* Cursor al pasar sobre el botón */
+    align-items: center;
+}
+
+
+.navbar button .icon {
+    /* Estilos específicos para el icono */
+    margin-right: 8px; /* Espacio a la derecha del icono */
+    width: 16px; /* Ancho de la imagen */
+    height: 16px; /* Alto de la imagen */
+}
+
+.navbar button:hover {
+    background-color: #88B14B;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+/* Estilos para el nombre */
+h1 {
+    margin: 0; /* Eliminar márgenes */
+    color: #000; /* Color del texto predeterminado */
+    display: inline-block; /* Para que cada letra ocupe su propio espacio */
+    font-size: 64px; /* Tamaño del texto */
+}
+
+/* Estilos para la letra "i" */
+h1 .letra-i {
+    color: #88B14B; /* Cambiar color de la letra */
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 400px; /* Establece un ancho mínimo para las gráficas */
+    min-height: 200px;
+}

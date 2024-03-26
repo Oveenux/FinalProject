@@ -7,6 +7,7 @@
     <title>EcoMedix</title>
     <link rel="icon" href='../static/logoNF.png' type="image/png">
     <link rel="stylesheet" href="../static/inicioEstilos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
@@ -19,25 +20,19 @@
     <!-- Cuadro de texto (inicialmente oculto) -->
     <div id="contactBox">
         <button class="closeBtn" onclick="closeContactBox()">x</button>
-        <p>Correos electrónicos de contacto:</p>
-        <ul>
-            <li>ajrondon@uninorte.edu.co</li>
-            <li>edjaramillo@uninorte.edu.co</li>
-        </ul>
-    </div>
-    <!-- Script para mostrar/ocultar el cuadro de texto -->
-    <script>
-        function closeContactBox() {
-            document.getElementById('contactBox').style.display = 'none';
-        }
+        <div class="contactInfo">
+            <p>Correo electrónico de contacto: </p>
+            <p id="email">ecomedixdevops@gmail.com</p>
+        </div>
+        <button onclick="copyToClipboard()" class="black-button">
+            <i class="material-icons" style="color:#fff">content_copy</i>
+        </button>
 
-        document.getElementById('contactBtn').addEventListener('click', function () {
-            document.getElementById('contactBox').style.display = 'block';
-        });
-    </script>
+    </div>
+
     
     <div class="container">
-    <h1>EcoMedix Guard</h1> 
+    <h1>EcoMed<span class="letra-i">i</span>x Guard</h1> 
         <div class="row">
         
         <!-- Recuadro 1 -->
@@ -48,25 +43,15 @@
                         <img src="../static/presentacion.jpeg" alt="Imagen 1" class="card-image">
                         <p class="card-text">Servicio de monitoreo a tu mano.</p>
                         <button id="Btn">Info</button>
-                            <div id="infoBox">
-				<button class="closeBtn" onclick="closeInfoBox()">x</button>
-				<p>Esperemos que te guste nuestro sitio web! Aquí puedes:</p>
-				<ul>
-				    <li>Acceder a la información monitoreada</li>
-				    <li>Vizualizar las variables de forma continua</li>
-				    <li>Realizar consultas sobre los datos históricos</li>
-				</ul>
-			    </div>
-			    <!-- Script para mostrar/ocultar el cuadro de texto -->
-			    <script>
-				function closeInfoBox() {
-				    document.getElementById('infoBox').style.display = 'none';
-				}
-
-				document.getElementById('Btn').addEventListener('click', function () {
-				    document.getElementById('infoBox').style.display = 'block';
-				});
-			    </script>
+                        <div id="infoBox">
+                            <button class="closeBtn" onclick="closeInfoBox()">x</button>
+                            <p>Esperemos que te guste nuestro sitio web! Aquí puedes:</p>
+                            <ul>
+                                <li>Acceder a la información monitoreada</li>
+                                <li>Vizualizar las variables de forma continua</li>
+                                <li>Realizar consultas sobre los datos históricos</li>
+                            </ul>
+                        </div>
     
                     </div>
                 </div>
@@ -79,7 +64,7 @@
                         <h5 class="card-title">Monitoreo continuo</h5>
                         <img src="../static/MC.png" alt="Imagen 2" class="card-image">
                         <p class="card-text">Visualización gŕafica de los datos.</p>
-                        <a href="../tiempo-real" class="btn">Ver gŕaficas</a>
+                        <a href="../monitoreo" class="btn">Ver gŕaficas</a>
                     </div>
                 </div>
             </div>
@@ -98,6 +83,9 @@
             
         </div>
     </div>
+
+    <script src="../static/inicioScript.js"></script>
+
 </body>
 
 </html>

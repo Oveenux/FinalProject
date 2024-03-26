@@ -1,2 +1,4 @@
 # Ignore configuration folder and files.
 access_config/
+pruebas/
+__pycache__/
