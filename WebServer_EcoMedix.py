@@ -17,9 +17,13 @@ def index2():
 def index3():
     return render_template('historicosWP.html')
 
+@app.route('/get_data')
+def get_data():
+    return func.get_data()
+
 @app.route('/stream')
 def stream():
-    return Response(func.generar_datos(), content_type='text/event-stream')
+    return func.actualizar_ultimoDato()
 
 if __name__ == '__main__':
     app.run(**hostConfig)

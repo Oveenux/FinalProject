@@ -134,35 +134,141 @@ function createChart2V(ctx, label1, label2, borderColor1, borderColor2, y_unit) 
 }
 
 
-function actualizarDatosGrafica(chart, nuevoTiempo, nuevaVariable, limiteLongitud) {
-    // Agregar el nuevo valor al final del conjunto de datos de la gráfica
-    chart.data.labels.push(nuevoTiempo);
-    chart.data.datasets[0].data.push(nuevaVariable);
 
-    // Verificar y eliminar el primer valor si se supera un cierto límite de longitud
+function eliminarUltimoDato(chart,limiteLongitud){
     if (chart.data.labels.length > limiteLongitud) {
         chart.data.labels.shift();
         chart.data.datasets[0].data.shift();
     }
-
-    // Actualizar la gráfica
     chart.update();
 }
 
-function actualizarDatosGrafica2V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, limiteLongitud) {
-
-    chart.data.labels.push(nuevoTiempo);
-    chart.data.datasets[0].data.push(nuevaVariable1);
-    chart.data.datasets[1].data.push(nuevaVariable2);
-
+function eliminarUltimoDato2V(chart,limiteLongitud){
     if (chart.data.labels.length > limiteLongitud) {
         chart.data.labels.shift();
         chart.data.datasets[0].data.shift();
         chart.data.datasets[1].data.shift();
     }
-
     chart.update();
 }
+
+function graficaInicial(chart, nuevoTiempo, nuevaVariable, limiteLongitud) {
+    chart.data.labels.push(...nuevoTiempo);
+    chart.data.datasets[0].data.push(...nuevaVariable);
+    eliminarUltimoDato(chart,limiteLongitud)
+}
+
+function graficaInicial2V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, limiteLongitud) {
+    chart.data.labels.push(...nuevoTiempo);
+    chart.data.datasets[0].data.push(...nuevaVariable1);
+    chart.data.datasets[1].data.push(...nuevaVariable2);
+    eliminarUltimoDato2V(chart,limiteLongitud)
+}
+
+function actualizarDatosGrafica(chart, nuevoTiempo, nuevaVariable, limiteLongitud) {
+    // Agregar el nuevo valor al final del conjunto de datos de la gráfica
+    chart.data.labels.push(nuevoTiempo);
+    chart.data.datasets[0].data.push(nuevaVariable);
+    eliminarUltimoDato(chart,limiteLongitud)
+    
+}
+
+function actualizarDatosGrafica2V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, limiteLongitud) {
+    chart.data.labels.push(nuevoTiempo);
+    chart.data.datasets[0].data.push(nuevaVariable1);
+    chart.data.datasets[1].data.push(nuevaVariable2);
+    eliminarUltimoDato2V(chart,limiteLongitud)
+}
+
+var tempExtInicial = [];
+var tempNevInicial = [];
+var humedadExtInicial = [];
+var humedadNevInicial = [];
+var luminosidadInicial = [];
+var vientoInicial = [];
+var tmstamps = [];
+
+function getDataFromServer(callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                tempExtInicial =  response.tempExti;
+                tempNevInicial = response.tempNevi;
+                humedadExtInicial = response.humedadExti;
+                humedadNevInicial = response.humedadNevi;
+                luminosidadInicial = response.luminosidadi;
+                vientoInicial = response.vientoi;
+
+                // Itera sobre cada cadena en "labels" y obtiene el timestamp
+                response.labels.forEach(label => {
+                    // Divide la cadena por espacios y selecciona la parte [4] (el timestamp)
+                    var parts = label.split(" ");
+                    const timestamp = parts[4];
+                    // Agrega el timestamp al array de timestamps
+                    tmstamps.push(timestamp);
+                });
+
+
+                // Llamar al callback una vez que se hayan asignado los datos
+                callback();
+            } else {
+                console.error('Error al obtener los datos:', xhr.status);
+            }
+        }
+    };
+    xhr.open('GET', '/get_data'); // Ruta relativa a la dirección de tu servidor
+    xhr.send();
+}
+
+function fetchDataAndDrawChart() {
+    fetch('/stream')
+
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudieron obtener los datos');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (Object.keys(data).length === 0) {
+                console.log('No hay datos disponibles');
+                return; // No hagas nada si no hay datos disponibles
+            }
+
+            var estampa = data.label.split(" ");
+            var timestamp = estampa[4];
+            var variables = data.variables;
+            var tempExt = parseFloat(variables[0]);
+            var tempNev = parseFloat(variables[1]);
+            var humedadExt = parseFloat(variables[2]);
+            var humedadNev = parseFloat(variables[3]);
+            var luminosidad = parseFloat(variables[4]);
+            var viento = parseFloat(variables[5]);
+
+            actualizarDatosGrafica2V(tempChart, timestamp, tempExt, tempNev, 10);
+            actualizarDatosGrafica2V(humidityChart, timestamp, humedadExt, humedadNev, 10);
+            actualizarDatosGrafica(windChart, timestamp, viento, 10);
+            actualizarDatosGrafica(lumChart, timestamp, luminosidad, 10);
+
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    getDataFromServer(function() {
+        
+        graficaInicial2V(tempChart, tmstamps, tempExtInicial, tempNevInicial, 10);
+        graficaInicial2V(humidityChart, tmstamps, humedadExtInicial, humedadNevInicial, 10);
+        graficaInicial(lumChart, tmstamps, luminosidadInicial, 10);
+        graficaInicial(windChart, tmstamps, vientoInicial, 10);
+        
+    });
+});
+
+
 
 
 var ctx1 = document.getElementById('tempChart').getContext('2d');
@@ -177,31 +283,6 @@ var lumChart = createChart(ctx3, 'Luminosidad', '#FFE90050', '#FFE900','Lux (lx)
 var ctx4 = document.getElementById('windChart').getContext('2d');
 var windChart = createChart(ctx4, 'Velocidad del viento', '#6050A850', '#6050A8','Velocidad (Km/h)');
 
-var eventoStream = new EventSource('/stream');
-eventoStream.onmessage = function(event) {
-    var datos = event.data.split(' ');
 
-    // Variables para gráficas 
-    var timestamp = datos[1];
-    var tempExt = parseFloat(datos[2]);
-    var tempNev = parseFloat(datos[3]);
-    var humedadExt = parseFloat(datos[4]);
-    var humedadNev = parseFloat(datos[5]);
-    var luminosidad = parseFloat(datos[6]);
-    var viento = parseFloat(datos[7]);
-    
-    var partesTimestamp = timestamp.split(':');
-    
-    var horas = partesTimestamp[0];
-    var minutos = partesTimestamp[1];
-    var tiempo = horas + ':' + minutos;
-    
-    
-    document.getElementById('mensaje').innerHTML = "Nuevo dato recibido - Tiempo: " + tiempo + "  - Temperatura: " + tempExt;
 
-    actualizarDatosGrafica2V(tempChart, timestamp, tempExt, tempNev, 10);
-    actualizarDatosGrafica2V(humidityChart, timestamp, humedadExt, humedadNev, 10);
-    actualizarDatosGrafica(windChart, tiempo, viento, 10);
-    actualizarDatosGrafica(lumChart, timestamp, luminosidad, 10);
-
-};
+setInterval(fetchDataAndDrawChart, 5000); 
