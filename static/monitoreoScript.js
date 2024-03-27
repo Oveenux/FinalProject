@@ -1,3 +1,12 @@
+var tempExtInicial = [];
+var tempNevInicial = [];
+var humedadExtInicial = [];
+var humedadNevInicial = [];
+var luminosidadInicial = [];
+var vientoInicial = [];
+var tmstamps = [];
+var unidades = ["°C", "°C", "%", "%", "Lux", "km/h"]; // Unidades correspondientes
+
 // Función para gŕafico con 1 variable    
 function createChart(ctx, label, backgroundColor, borderColor, y_unit) {
     return new Chart(ctx, {
@@ -180,13 +189,18 @@ function actualizarDatosGrafica2V(chart, nuevoTiempo, nuevaVariable1, nuevaVaria
     eliminarUltimoDato2V(chart,limiteLongitud)
 }
 
-var tempExtInicial = [];
-var tempNevInicial = [];
-var humedadExtInicial = [];
-var humedadNevInicial = [];
-var luminosidadInicial = [];
-var vientoInicial = [];
-var tmstamps = [];
+function actualizarMarcadores(valores, unidades) {
+    
+        // Obtener todos los elementos <span> con la clase 'value'
+        var spans = document.querySelectorAll('.infoGrid-container-2 .value');
+
+        // Iterar sobre los spans y asignarles el valor y la unidad correspondientes
+        spans.forEach(function(span, index) {
+            var valor = valores[index];
+            var unidad = unidades[index] || ""; // Si no hay unidad definida, usar una cadena vacía
+            span.textContent = valor + " " + unidad; // Concatenar valor y unidad
+        });
+}
 
 function getDataFromServer(callback) {
     var xhr = new XMLHttpRequest();
@@ -247,6 +261,8 @@ function fetchDataAndDrawChart() {
             var luminosidad = parseFloat(variables[4]);
             var viento = parseFloat(variables[5]);
 
+            actualizarMarcadores(variables, unidades)
+
             actualizarDatosGrafica2V(tempChart, timestamp, tempExt, tempNev, 10);
             actualizarDatosGrafica2V(humidityChart, timestamp, humedadExt, humedadNev, 10);
             actualizarDatosGrafica(windChart, timestamp, viento, 10);
@@ -264,6 +280,11 @@ document.addEventListener('DOMContentLoaded', function () {
         graficaInicial2V(humidityChart, tmstamps, humedadExtInicial, humedadNevInicial, 10);
         graficaInicial(lumChart, tmstamps, luminosidadInicial, 10);
         graficaInicial(windChart, tmstamps, vientoInicial, 10);
+
+        var valores = [tempExtInicial[0], tempNevInicial[0], humedadExtInicial[0], 
+                        humedadNevInicial[0], luminosidadInicial[0], vientoInicial[0]]; // Valores de las variables
+        
+        actualizarMarcadores(valores, unidades);
         
     });
 });
@@ -275,7 +296,7 @@ var ctx1 = document.getElementById('tempChart').getContext('2d');
 var tempChart = createChart2V(ctx1, 'Temperatura exterior', 'Temperatura nevera', '#FAA500', '#7BA0C0', 'Grados Celsius (°C)');
 
 var ctx2 = document.getElementById('humidityChart').getContext('2d');
-var humidityChart = createChart2V(ctx2, 'Humedad exterior', 'Humedad nevera', 'rgba(99, 99, 255, 1)', 'rgba(155, 155, 155, 1)', 'Porcentaje (%)');
+var humidityChart = createChart2V(ctx2, 'Humedad exterior', 'Humedad nevera', '#2667FF', 'rgba(155, 155, 155, 1)', 'Porcentaje (%)');
 
 var ctx3 = document.getElementById('lumChart').getContext('2d');
 var lumChart = createChart(ctx3, 'Luminosidad', '#FFE90050', '#FFE900','Lux (lx)');
