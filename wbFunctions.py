@@ -46,6 +46,8 @@ def get_data():
         global ultimo_almacenado
         ultimo_almacenado = timestamps[-1]
         print('ultimo = ', ultimo_almacenado)
+
+        cursor.close()
         conn.close()
         
         return jsonify({"labels": timestamps, "luminosidadi": luminosidadi, "vientoi": vientoi, "tempExti": tempExti,
@@ -62,6 +64,7 @@ def buscar_ultimoDato():
     cursor.execute(sql)
     respuesta = cursor.fetchone()
     ultimoDato_DB = respuesta[0]
+    cursor.close()
     conn.close()
     return ultimoDato_DB
 
@@ -89,6 +92,7 @@ def actualizar_ultimoDato():
         print(ultimo_almacenado)
         print(timestamp)
         print("Nuevos datos")
+        cursor.close()
         conn.close()
 
         return jsonify({})
@@ -106,6 +110,7 @@ def actualizar_ultimoDato():
         print(variables)
         ultimo_almacenado = timestamp
 
+        cursor.close()
         conn.close()
 
         return jsonify({"label": timestamp, "variables":variables})
