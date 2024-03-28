@@ -121,32 +121,32 @@ h2:hover {
 }
 
 .box1 {
-    background-color: #FAA500; /* Color para el primer div */
+    background-color: #FAA50085; /* Color para el primer div */
     border: 1px solid #ccc; /* Borde para visualización */
 }
 
 .box2 {
-    background-color: #7BA0C0; /* Color para el segundo div */
+    background-color: #7BA0C085; /* Color para el segundo div */
     border: 1px solid #ccc; /* Borde para visualización */
 }
 
 .box3 {
-    background-color: #2667FF; /* Color para el tercer div */
+    background-color: #2667FF85; /* Color para el tercer div */
     border: 1px solid #ccc; /* Borde para visualización */
 }
 
 .box4 {
-    background-color: #9B9B9B; /* Color para el cuarto div */
+    background-color: #9B9B9B85; /* Color para el cuarto div */
     border: 1px solid #ccc; /* Borde para visualización */
 }
 
 .box5 {
-    background-color: #FFE900; /* Color para el quinto div */
+    background-color: #FFE90085; /* Color para el quinto div */
     border: 1px solid #ccc; /* Borde para visualización */
 }
 
 .box6 {
-    background-color: #6050A8; /* Color para el sexto div */
+    background-color: #6050A885; /* Color para el sexto div */
     border: 1px solid #ccc; /* Borde para visualización */
 }
 
