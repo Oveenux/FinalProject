@@ -281,8 +281,8 @@ document.addEventListener('DOMContentLoaded', function () {
         graficaInicial(lumChart, tmstamps, luminosidadInicial, 10);
         graficaInicial(windChart, tmstamps, vientoInicial, 10);
 
-        var valores = [tempExtInicial[0], tempNevInicial[0], humedadExtInicial[0], 
-                        humedadNevInicial[0], luminosidadInicial[0], vientoInicial[0]]; // Valores de las variables
+        var valores = [tempExtInicial[9], tempNevInicial[9], humedadExtInicial[9], 
+                        humedadNevInicial[9], luminosidadInicial[9], vientoInicial[9]]; // Valores de las variables
         
         actualizarMarcadores(valores, unidades);
         
