@@ -1,5 +1,5 @@
 from access_config.DB_Access import authentication
-from flask import jsonify
+from flask import jsonify, request
 import mysql.connector
 import random
 import time
@@ -73,11 +73,8 @@ def actualizar_ultimoDato():
     global ultimo_almacenado
     
     if 'ultimo_almacenado' not in globals():
-        print('La variable ultimo_almacenado no existe en el ámbito global')
         global ultimo_almacenado
         ultimo_almacenado = buscar_ultimoDato()
-    else:
-        print('La variable ultimo_almacenado ya existe en el ámbito global')
     
 
     conn = conectar()
@@ -114,3 +111,37 @@ def actualizar_ultimoDato():
         conn.close()
 
         return jsonify({"label": timestamp, "variables":variables})
+    
+def search_data():
+    if request.method == 'POST':
+
+        # Manejar los datos del formulario aquí
+        start_datetime = request.form['start_datetime']
+        end_datetime = request.form['end_datetime']
+
+        # Cambiar el foramto de las fechas
+        start_datetime = start_datetime.split('T')
+        start_datetime = start_datetime[0] + ' ' + start_datetime [1] + ':00'
+
+        end_datetime = end_datetime.split('T')
+        end_datetime = end_datetime[0] + ' ' + end_datetime[1] + ':00'
+        
+        # Por ejemplo, podrías imprimir los datos recibidos
+        print("Fecha y hora de inicio:", start_datetime)
+        print("Fecha y hora de fin:   ", end_datetime)
+
+        conn = conectar()
+        cursor = conn.cursor(dictionary=True)
+        consulta = ("SELECT TEMP, LUX FROM datos "
+                    "WHERE TIMESTAMP >= %s AND TIMESTAMP <= %s")
+        
+        cursor.execute(consulta, (start_datetime, end_datetime))
+        hist = cursor.fetchall()
+        
+        tempExt = [row['TEMP'] for row in hist]
+        luminosidad = [row['LUX'] for row in hist]
+
+        cursor.close()
+        conn.close()
+
+        return jsonify({'tempExt': tempExt, 'luminosidad': luminosidad})

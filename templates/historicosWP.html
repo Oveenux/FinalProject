@@ -12,18 +12,51 @@
 
 <body>
 
-<img class="logo" src="../static/logoNF.png" alt="Logo">
+    <img class="logo" src="../static/logoNF.png" alt="Logo">
 
-<div class="navbar">  
-    <button onclick="window.location.href='../monitoreo'">
-        <img src="../static/graphB.png" alt="Lupa" class="icon">Monitoreo
-    </button>
-    
-</div>
+    <div class="navbar">  
+        <button onclick="window.location.href='../monitoreo'">
+            <img src="../static/graphB.png" alt="graphB" class="icon">Monitoreo
+        </button>
+        
+    </div>
 
-<a href="../">
-    <h1>EcoMed<span class="letra-i">i</span>x</h1>
-</a>
+    <a href="../">
+        <h1>EcoMed<span class="letra-i">i</span>x</h1>
+    </a>
 
+    <h2>Consulta de Históricos</h2>
+
+    <h3>Seleccionar Rango de Fechas y Horas</h3>
+
+    <div class="container-form">
+    <form id ='myForm'>
+        <label for="start_datetime">Fecha y hora inicial:</label>
+        <input type="datetime-local" id="start_datetime" name="start_datetime" required>
+        
+        <label for="end_datetime">Fecha y hora final: </label>
+        <input type="datetime-local" id="end_datetime" name="end_datetime" required>
+
+        <div class = 'botones-form'>
+            <button type="button" id='filtro_btn' onclick="toggleMenu()">Filtrar</button>
+            <div id="menuDesplegable">
+                    <button type="button" onclick="limpiarCheckboxes()">Limpiar</button><br>
+                    <br>
+                    <label><input type="checkbox" name="opcion1" value="opcion1"> Temperatura exterior </label><br>
+                    <label><input type="checkbox" name="opcion2" value="opcion2"> Temperatura nevera </label><br>
+                    <label><input type="checkbox" name="opcion3" value="opcion3"> Humedad exterior </label><br>
+                    <label><input type="checkbox" name="opcion4" value="opcion4"> Humedad nevera </label><br>
+                    <label><input type="checkbox" name="opcion5" value="opcion6"> Luminosidad </label><br>
+                    <label><input type="checkbox" name="opcion4" value="opcion4"> Viento </label><br>
+            </div>
+            <button type="submit" id="submitButton">Obtener datos</button>
+        </div>
+    </form> 
+    </div>
+
+    <h3>Respuesta en Tabla</h3>
+    <div id="tabla-container"></div>
+
+    <script src="../static/historicosScript.js"></script>
 </body>
 </html>

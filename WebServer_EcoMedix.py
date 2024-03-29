@@ -17,13 +17,17 @@ def index2():
 def index3():
     return render_template('historicosWP.html')
 
-@app.route('/get_data')
+@app.route('/get_data', methods = ['POST'])
 def get_data():
     return func.get_data()
 
-@app.route('/stream')
+@app.route('/stream', methods = ['POST'])
 def stream():
     return func.actualizar_ultimoDato()
+
+@app.route('/search_data', methods=['POST'])
+def search_data():
+    return func.search_data()
 
 if __name__ == '__main__':
     app.run(**hostConfig)

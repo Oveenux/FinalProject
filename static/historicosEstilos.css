@@ -1,4 +1,4 @@
-/* Estilos para plantilla de monitoreo y gráficas de la página web */
+/* Estilos para plantilla de busqueda de históricos */
 
 body {
     font-family: "Times New Roman", Times, serif;
@@ -52,7 +52,6 @@ body::before {
     align-items: center;
 }
 
-
 .navbar button .icon {
     /* Estilos específicos para el icono */
     margin-right: 8px; /* Espacio a la derecha del icono */
@@ -62,13 +61,6 @@ body::before {
 
 .navbar button:hover {
     background-color: #88B14B;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-bottom: 0;
 }
 
 /* Estilos para el nombre */
@@ -82,4 +74,93 @@ h1 {
 /* Estilos para la letra "i" */
 h1 .letra-i {
     color: #88B14B; /* Cambiar color de la letra */
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    margin-right: 180px;
+    font-size: 32px;
+}
+
+h2:hover {
+   color: #88B14B;  
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 0;
+    align-items: stretch;
+}
+
+.container-form {
+    max-width: 400px; /* Ancho máximo del contenedor */
+    padding: 20px; /* Espacio interno del contenedor */
+    border: 1px solid #000;
+}
+
+#myForm label {
+    display: inline-block; /* Permitir que los labels se muestren en línea */
+    margin-bottom: 5px; /* Espacio entre los labels */
+    text-align: left; /* Alinea el texto a la izquierda */
+    width: 45%; /* Ancho del label */
+}
+
+#myForm input[type="datetime-local"] {
+    display: inline-block; /* Permitir que los inputs se muestren en línea */
+    width: 50%; /* Ancho del input */
+}
+
+#menuDesplegable {  
+    margin-top: 40px;
+    display: none;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: auto;
+    position: absolute; /* Posicionamiento absoluto */
+    background-color: #fff; /* Color de fondo */
+    z-index: 999;
+    white-space: nowrap;
+    border-radius: 10px;
+}
+
+.botones-form { 
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    grid-column-gap: 20px; /* Espacio entre columnas */
+    grid-template-rows: auto;  
+}
+
+#filtro_btn {
+    margin-top: 5px;
+    background-color: #000;
+    color: #fff;
+    max-width: 50%;
+    height: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: none
+}
+
+button[type="submit"] {
+    margin-top: 5px;
+    background-color: #000;
+    color: #fff;
+    max-width: 80%;
+    height: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: none
+}
+
+#filtro_btn:hover {
+   background-color: #88B14B;  
+}
+
+button[type="submit"]:hover {
+   background-color: #88B14B;  
 }

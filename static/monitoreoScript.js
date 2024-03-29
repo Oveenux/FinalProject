@@ -232,12 +232,12 @@ function getDataFromServer(callback) {
             }
         }
     };
-    xhr.open('GET', '/get_data'); // Ruta relativa a la dirección de tu servidor
+    xhr.open('POST', '/get_data'); // Ruta relativa a la dirección de tu servidor
     xhr.send();
 }
 
 function fetchDataAndDrawChart() {
-    fetch('/stream')
+    fetch('/stream', {method: "POST"})
 
         .then(response => {
             if (!response.ok) {
