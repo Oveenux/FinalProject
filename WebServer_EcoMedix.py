@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template
 from access_config.host_AD import hostConfig
 import wbFunctions as func
 

@@ -27,35 +27,48 @@
 
     <h2>Consulta de Históricos</h2>
 
-    <h3>Seleccionar Rango de Fechas y Horas</h3>
+    <div class="container">
+        <div class="left-container">
+            <div class="container-form">
+                <form id ='myForm'>
+                    <label for="start_datetime">Fecha y hora inicial:</label>
+                    <input type="datetime-local" id="start_datetime" name="start_datetime" required value="2024-03-26T19:55" min="2024-03-26T19:55">
+                    
+                    <label for="end_datetime">Fecha y hora final: </label>
+                    <input type="datetime-local" id="end_datetime" name="end_datetime" required min="2024-03-26T19:55">
 
-    <div class="container-form">
-    <form id ='myForm'>
-        <label for="start_datetime">Fecha y hora inicial:</label>
-        <input type="datetime-local" id="start_datetime" name="start_datetime" required>
-        
-        <label for="end_datetime">Fecha y hora final: </label>
-        <input type="datetime-local" id="end_datetime" name="end_datetime" required>
-
-        <div class = 'botones-form'>
-            <button type="button" id='filtro_btn' onclick="toggleMenu()">Filtrar</button>
-            <div id="menuDesplegable">
-                    <button type="button" onclick="limpiarCheckboxes()">Limpiar</button><br>
-                    <br>
-                    <label><input type="checkbox" name="opcion1" value="opcion1"> Temperatura exterior </label><br>
-                    <label><input type="checkbox" name="opcion2" value="opcion2"> Temperatura nevera </label><br>
-                    <label><input type="checkbox" name="opcion3" value="opcion3"> Humedad exterior </label><br>
-                    <label><input type="checkbox" name="opcion4" value="opcion4"> Humedad nevera </label><br>
-                    <label><input type="checkbox" name="opcion5" value="opcion6"> Luminosidad </label><br>
-                    <label><input type="checkbox" name="opcion4" value="opcion4"> Viento </label><br>
+                    <div class = 'botones-form'>
+                        <button type="button" id='filtro_btn' onclick="toggleMenu()">
+                            <img src="../static/filterB.png" alt="filterB" class="icon">Filtrar
+                        </button>
+                        <div id="menuDesplegable">
+                            <button type="button" onclick="limpiarCheckboxes()">Limpiar</button><br>
+                            <br>
+                            <label><input type="checkbox" name="tempExtf" value="TEMP"> Temperatura exterior </label><br>
+                            <label><input type="checkbox" name="tempNevf" value="TEMPNEV"> Temperatura nevera </label><br>
+                            <label><input type="checkbox" name="humExtf" value="HUM"> Humedad exterior </label><br>
+                            <label><input type="checkbox" name="humNevf" value="HUMNEV"> Humedad nevera </label><br>
+                            <label><input type="checkbox" name="lumf" value="LUX"> Luminosidad </label><br>
+                            <label><input type="checkbox" name="vientof" value="VV"> Viento </label><br>
+                        </div>
+                        <button type="submit" id="submitButton">Obtener datos</button>
+                    </div>
+                </form> 
             </div>
-            <button type="submit" id="submitButton">Obtener datos</button>
+            <button id="downloadButton">
+                <img src="../static/downloadB.png" alt="downloadB" class="icon">CSV
+            </button>
         </div>
-    </form> 
-    </div>
 
-    <h3>Respuesta en Tabla</h3>
-    <div id="tabla-container"></div>
+        <div id="tabla-container">
+            <div id = "tabla-scroll">
+                <button id="downloadButton">
+                    <img src="../static/downloadB.png" alt="downloadB" class="icon">CSV
+                </button>
+            </div>
+        </div>
+    </div>
+    
 
     <script src="../static/historicosScript.js"></script>
 </body>

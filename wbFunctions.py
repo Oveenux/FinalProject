@@ -125,23 +125,34 @@ def search_data():
 
         end_datetime = end_datetime.split('T')
         end_datetime = end_datetime[0] + ' ' + end_datetime[1] + ':00'
+       
+        valores_checkbox = []
+
+        for valor in request.form.getlist('checkboxesMarcados'):
+            if valor != '0':
+                valores_checkbox.append(valor)
+
+        if len(valores_checkbox) == 0:
+            valores_checkbox = ["TEMP","TEMPNEV","HUM","HUMNEV","LUX","VV"]
         
-        # Por ejemplo, podrías imprimir los datos recibidos
-        print("Fecha y hora de inicio:", start_datetime)
-        print("Fecha y hora de fin:   ", end_datetime)
+        columnas_sql = ', '.join(valores_checkbox)
 
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
-        consulta = ("SELECT TEMP, LUX FROM datos "
+        consulta = (f"SELECT {columnas_sql}, TIMESTAMP FROM datos "
                     "WHERE TIMESTAMP >= %s AND TIMESTAMP <= %s")
         
         cursor.execute(consulta, (start_datetime, end_datetime))
         hist = cursor.fetchall()
-        
-        tempExt = [row['TEMP'] for row in hist]
-        luminosidad = [row['LUX'] for row in hist]
+
+        datos_agrupados = {}
+        for fila in hist:
+            for columna, valor in fila.items():
+                if columna not in datos_agrupados:
+                    datos_agrupados[columna] = []
+                datos_agrupados[columna].append(valor)
 
         cursor.close()
         conn.close()
 
-        return jsonify({'tempExt': tempExt, 'luminosidad': luminosidad})
+        return jsonify(datos_agrupados)
