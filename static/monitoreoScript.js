@@ -91,7 +91,7 @@ function createChart2V(ctx, label1, label2, borderColor1, borderColor2, y_unit) 
                 backgroundColor: borderColor2,
                 borderWidth: 2,
                 fill: false,
-                pointRadius: 3,
+                pointRadius: 6,
                 pointStyle: 'triangle'
 
             }]

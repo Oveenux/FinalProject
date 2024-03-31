@@ -30,7 +30,7 @@ def get_data():
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
         # Consulta para obtener los últimos 10 datos
-        sql = "SELECT TIMESTAMP, TEMP, TEMPNEV, HUM, HUMNEV, LUX FROM datos ORDER BY NUM DESC LIMIT 10"
+        sql = "SELECT TIMESTAMP, TEMP, TEMPNEV, HUM, HUMNEV, LUX, VV FROM datos ORDER BY NUM DESC LIMIT 10"
         cursor.execute(sql)
         result = cursor.fetchall()
 
@@ -41,7 +41,7 @@ def get_data():
         humedadExti = [row['HUM'] for row in reversed(result)]
         humedadNevi = [row['HUMNEV'] for row in reversed(result)]
         luminosidadi = [row['LUX'] for row in reversed(result)]
-        vientoi = [random.randint(12, 18) for _ in range(10)]
+        vientoi = [row['VV'] for row in reversed(result)]
 
         global ultimo_almacenado
         ultimo_almacenado = timestamps[-1]
@@ -80,7 +80,7 @@ def actualizar_ultimoDato():
     conn = conectar()
     cursor = conn.cursor()
     # Consulta para obtener los últimos 10 datos
-    sql = "SELECT TIMESTAMP, TEMP, TEMPNEV, HUM, HUMNEV, LUX FROM datos ORDER BY NUM DESC LIMIT 1"
+    sql = "SELECT TIMESTAMP, TEMP, TEMPNEV, HUM, HUMNEV, LUX, VV FROM datos ORDER BY NUM DESC LIMIT 1"
     cursor.execute(sql)
     ultimoFila = cursor.fetchone()
     timestamp = ultimoFila[0]
@@ -103,7 +103,7 @@ def actualizar_ultimoDato():
         variables = []
         for variable in ultimoFila[1:]:
             variables.append(variable)
-        variables.append(random.randint(13,18))
+        
         print(variables)
         ultimo_almacenado = timestamp
 
