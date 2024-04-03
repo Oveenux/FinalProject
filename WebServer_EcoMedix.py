@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from access_config.host_AD import hostConfig
-import wbFunctions as func
+import wsFunctions as func
 
 app = Flask(__name__)
 
