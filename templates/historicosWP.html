@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial de datos</title>
-    <link rel="icon" href='../static/logoNF.png' type="image/png">
+    <link rel="icon" href='../static/images/logoNF.png' type="image/png">
     <link rel="stylesheet" href="../static/historicosEstilos.css">
     
 </head>
 
 <body>
 
-    <img class="logo" src="../static/logoNF.png" alt="Logo">
+    <img class="logo" src="../static/images/logoNF.png" alt="Logo">
 
     <div class="navbar">  
         <button onclick="window.location.href='../monitoreo'">
-            <img src="../static/graphB.png" alt="graphB" class="icon">Monitoreo
+            <img src="../static/images/graphB.png" alt="graphB" class="icon">Monitoreo
         </button>
         
     </div>
@@ -39,7 +39,7 @@
 
                     <div class = 'botones-form'>
                         <button type="button" id='filtro_btn' onclick="toggleMenu()">
-                            <img src="../static/filterB.png" alt="filterB" class="icon">Filtrar
+                            <img src="../static/images/filterB.png" alt="filterB" class="icon">Filtrar
                         </button>
                         <div id="menuDesplegable">
                             <button type="button" onclick="limpiarCheckboxes()">Limpiar</button><br>
@@ -56,16 +56,12 @@
                 </form> 
             </div>
             <button id="downloadButton">
-                <img src="../static/downloadB.png" alt="downloadB" class="icon">CSV
+                <img src="../static/images/downloadB.png" alt="downloadB" class="icon">CSV
             </button>
         </div>
 
         <div id="tabla-container">
-            <div id = "tabla-scroll">
-                <button id="downloadButton">
-                    <img src="../static/downloadB.png" alt="downloadB" class="icon">CSV
-                </button>
-            </div>
+            <div id = "tabla-scroll"></div>
         </div>
     </div>
     

@@ -13,6 +13,15 @@ function toggleMenu() {
     }
 }
 
+document.addEventListener('click', function(event) {
+    var menu = document.getElementById("menuDesplegable");
+    var btnMenu = document.getElementById("filtro_btn");
+    if (menuAbierto && event.target !== menu && event.target !== btnMenu && !menu.contains(event.target)) {
+        menu.style.display = "none";
+        menuAbierto = false;
+    }
+});
+
 function setDateTimeNow() {
     // Obtener la fecha y hora actual
     var currentDate = new Date();

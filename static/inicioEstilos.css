@@ -11,7 +11,7 @@ body {
 body::before {
     content: "";
     position: absolute;
-    background-image: url('../static/fondoInicio.jpeg');
+    background-image: url('../static/images/fondoInicio.jpeg');
     background-size: 100%;
     background-attachment: fixed;
     background-position: center; /* Centra la imagen de fondo */
@@ -46,7 +46,7 @@ h1 .letra-i {
 
 /* Cambia el color del texto cuando el cursor pasa sobre el h1 */
 h1:hover {
-    color: #007bff;  
+    color: #88B14B;  
 }
 
 .row {
@@ -143,7 +143,7 @@ h1:hover {
 /* Estilos de los recuadros */
 .card {
     background-color: #f0f0f0;
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     margin: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px; 
@@ -195,7 +195,7 @@ h1:hover {
 }
 
 #contactBtn:hover {
-    background-color: #0056b3;
+    background-color: #88B14B;
 }
 
 .black-button {
