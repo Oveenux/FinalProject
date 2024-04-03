@@ -305,5 +305,4 @@ var ctx4 = document.getElementById('windChart').getContext('2d');
 var windChart = createChart(ctx4, 'Velocidad del viento', '#6050A850', '#6050A8','Velocidad (Km/h)');
 
 
-
 setInterval(fetchDataAndDrawChart, 5000); 
