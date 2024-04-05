@@ -87,6 +87,10 @@ h1 .letra-i {
     color: #88B14B; /* Cambiar color de la letra */
 }
 
+h1:hover {
+    color: #88B14B;  
+ }
+
 h2 {
     text-align: center;
     font-size: 32px;
@@ -108,9 +112,7 @@ h2:hover {
 }
 
 .infoGrid-container-2 div {
-    
     align-items: center; 
-   
     font-weight: bold;
     padding: 10px;
     height: cover;
