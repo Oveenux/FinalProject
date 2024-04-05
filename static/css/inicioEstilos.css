@@ -11,7 +11,7 @@ body {
 body::before {
     content: "";
     position: absolute;
-    background-image: url('../../static/images/fondoInicio.jpeg');
+    background-image: url('../../static/images/backgrounds/fondoInicio.jpeg');
     background-size: 100%;
     background-attachment: fixed;
     background-position: center; /* Centra la imagen de fondo */
