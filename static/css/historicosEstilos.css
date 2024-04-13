@@ -96,7 +96,7 @@ h2:hover {
     justify-content: center;
     max-width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 0;
 }
 
@@ -169,6 +169,7 @@ h2:hover {
     border: none;
     align-items: center;
     justify-content: center;
+    font-size: 15px;
 }
 
 #filtro_btn .icon {
@@ -185,7 +186,8 @@ button[type="submit"] {
     height: 30px;
     border-radius: 50px;
     cursor: pointer;
-    border: none
+    border: none;
+    font-size: 15px;
 }
 
 #filtro_btn:hover {

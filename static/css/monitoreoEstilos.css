@@ -67,7 +67,7 @@ body::before {
 .container {
     display: flex;
     justify-content: space-between;
-    max-width: 80%;
+    max-width: 95%;
     margin: 0 auto;
     padding: 20px;
     margin-bottom: 0;
@@ -109,22 +109,25 @@ h2:hover {
     text-align: center; /* Esto centrará el texto horizontalmente */
     margin: 0 auto;
     margin-right: 0px;
+    font-size: 20px;
 }
 
 .infoGrid-container-2 div {
     align-items: center; 
     font-weight: bold;
     padding: 10px;
-    height: cover;
+    height: 80%;
+    align-self: center;
 }
 
 .infoGrid-container-2 .value {
-    font-size: 30px; /* Ajusta el tamaño de la fuente según sea necesario */
+    font-size: 40px; /* Ajusta el tamaño de la fuente según sea necesario */
 }
 
 .box1 {
     background-color: #FAA50085; /* Color para el primer div */
     border: 1px solid #ccc; /* Borde para visualización */
+
 }
 
 .box2 {
