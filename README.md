@@ -11,7 +11,9 @@ Ernesto Daniel Jaramillo Durango    {*edjaramillo@uninorte.edu.co*}
 
 **Consultants**  
 Ing. María Gabriela Calle Torres  
-Ing. Rafael De Jesus Castillo Sierra  
+Ing. Rafael De Jesus Castillo Sierra
+
+![Texto alternativo](static/images/logo/logoFB.png)
 
 1. **ABSTRACT**  
 This project develops a monitoring system for environmental and electrical variables called **EcoMedix**.
