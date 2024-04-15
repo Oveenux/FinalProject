@@ -50,6 +50,7 @@ body::before {
     border-radius: 50px; /* Borde redondeado */
     cursor: pointer; /* Cursor al pasar sobre el botón */
     align-items: center;
+    font-size: 15px;
 }
 
 .navbar button .icon {
@@ -270,12 +271,13 @@ background-color: #ddd; /* Color de fondo de la pista al pasar el mouse */
     border-radius: 50px;
     cursor: pointer;
     margin-top: 20px;
+    font-size: 15px;
 }
 
 #downloadButton .icon {
     margin-right: 8px; 
     width: 16px; 
-    height: 16px; 
+    height: 16px;
 }
 
 #downloadButton:hover {

@@ -50,6 +50,7 @@ body::before {
     border-radius: 50px; /* Borde redondeado */
     cursor: pointer; /* Cursor al pasar sobre el botón */
     align-items: center;
+    font-size: 15px;
 }
 
 
