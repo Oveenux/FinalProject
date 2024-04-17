@@ -5,7 +5,7 @@ var humedadNevInicial = [];
 var luminosidadInicial = [];
 var vientoInicial = [];
 var tmstamps = [];
-var unidades = ["°C", "°C", "%", "%", "Lux", "km/h"]; // Unidades correspondientes
+var unidades = ["°C", "°C", "%", "%", "Lux", "m/s"]; // Unidades correspondientes
 
 // Función para gŕafico con 1 variable    
 function createChart(ctx, label, backgroundColor, borderColor, y_unit) {

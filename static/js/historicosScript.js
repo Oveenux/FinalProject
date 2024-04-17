@@ -230,3 +230,15 @@ document.getElementById('downloadButton').addEventListener('click', function() {
       }    
     downloadCSV();
 });
+
+new Vue({
+    el: '#app',
+    data: {
+      isOn: false
+    },
+    methods: {
+      toggleSwitch() {
+        this.isOn = !this.isOn;
+      }
+    }
+});

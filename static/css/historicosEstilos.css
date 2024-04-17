@@ -97,7 +97,7 @@ h2:hover {
     justify-content: center;
     max-width: 100%;
     margin: 0 auto;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 0;
 }
 
@@ -270,7 +270,7 @@ background-color: #ddd; /* Color de fondo de la pista al pasar el mouse */
     padding: 4px 20px;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 15px;
 }
 
@@ -282,4 +282,50 @@ background-color: #ddd; /* Color de fondo de la pista al pasar el mouse */
 
 #downloadButton:hover {
     background-color: #88B14B;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    padding: 10px;
+}
+
+.label-left {
+    margin-right: 10px;
+}
+
+.label-right {
+    margin-left: 10px;
+}
+
+.switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #88B14B;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.switch-inner {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    transform: translateY(-50%);
+}
+
+.switch.on .switch-inner {
+    transform: translateX(30px) translateY(-50%);
+}
+
+.on-color {
+    background-color: #000;
 }

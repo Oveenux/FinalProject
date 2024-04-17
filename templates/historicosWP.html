@@ -7,7 +7,7 @@
     <title>Historial de datos</title>
     <link rel="icon" href='../static/images/logo/logoNF.png' type="image/png">
     <link rel="stylesheet" href="../static/css/historicosEstilos.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
 
 <body>
@@ -61,7 +61,16 @@
         </div>
 
         <div id="tabla-container">
-            <div id = "tabla-scroll"></div>
+            <div id="app">
+                <div class="switch-container">
+                  <span class="label-left">Gráficas</span>
+                  <div class="switch" @click="toggleSwitch" :class="{ 'on': isOn, 'on-color': isOn }">
+                    <div class="switch-inner"></div>
+                  </div>
+                  <span class="label-right">Tabla</span>
+                </div>
+                <div id = "tabla-scroll" v-show="isOn"></div>
+            </div>
         </div>
     </div>
     
