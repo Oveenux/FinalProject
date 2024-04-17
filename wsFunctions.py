@@ -86,31 +86,30 @@ def actualizar_ultimoDato():
     timestamp = ultimoFila[0]
 
     if ultimo_almacenado != timestamp :
-        print(ultimo_almacenado)
-        print(timestamp)
+        print("Ultimo timestamp:", ultimo_almacenado)
+        print("Nuevo timestamp: ", timestamp)
         print("Nuevos datos")
-        cursor.close()
-        conn.close()
 
-        return jsonify({})
-        
-    else:
-
-        print(ultimo_almacenado, '=', timestamp)
-        print("No hay nuevos datos")
-
-        
         variables = []
         for variable in ultimoFila[1:]:
             variables.append(variable)
         
-        print(variables)
         ultimo_almacenado = timestamp
 
         cursor.close()
         conn.close()
 
-        return jsonify({"label": timestamp, "variables":variables})
+        return jsonify({"label": timestamp, "variables":variables}) 
+        
+    else:
+
+        print(ultimo_almacenado, '=', timestamp)
+        print("No hay nuevos datos")
+        
+        cursor.close()
+        conn.close()
+
+        return jsonify({})
     
 def search_data():
     if request.method == 'POST':
