@@ -6,9 +6,9 @@
 **Departamento de Ingeniería Eléctrica y Electrónica**  
 
 **Researches**  
-Jaider Andrés De la Rosa Rondon     {*ajrondon@uninorte.edu.co*}  
+Jaider Andrés De la Rosa Rondon     {*ajrondon@uninorte.edu.co*}
 Ernesto Daniel Jaramillo Durango    {*edjaramillo@uninorte.edu.co*}
-**Consultants**  
+**Consultants**
 Ing. María Gabriela Calle Torres  
 Ing. Rafael De Jesus Castillo Sierra  
 
