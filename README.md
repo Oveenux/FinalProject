@@ -4,6 +4,7 @@
 
 **UNIVERSIDAD DEL NORTE**  
 **Departamento de Ingeniería Eléctrica y Electrónica**  
+**Final Project 202410**  
 
 **Researches**  
 Jaider Andrés De la Rosa Rondon     {*ajrondon@uninorte.edu.co*}  
