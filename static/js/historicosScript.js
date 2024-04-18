@@ -1,6 +1,10 @@
 
 var menuAbierto = false;
 var jsonData;
+var graficoExistente = null;
+var graficos = [];
+var indiceGraficoActual = 0;
+
 
 function toggleMenu() {
     var menu = document.getElementById("menuDesplegable");
@@ -88,7 +92,7 @@ function crearTabla(data) {
     var keys = Object.keys(data);
     for (var key in data) {
         var th = document.createElement('th');
-        titulo = key; // Convertir la primera letra a mayúscula
+        titulo = key;
         th.textContent = tituloEncabezados(titulo)
         filaEncabezado.appendChild(th);
     }
@@ -103,6 +107,103 @@ function crearTabla(data) {
     }
 
     return tabla;
+}
+
+function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor, y_unit) {
+    return new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: estampa, // Inicialmente no hay etiquetas
+            datasets: [{
+                label: label,
+                data: variable,
+                backgroundColor: backgroundColor,
+                borderColor: borderColor,
+                borderWidth: 1,
+                fill: true,
+                pointRadius: 0,
+                cubicInterpolationMode: 'monotone'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tiempo (h)',
+                        color: 'black',
+                    },
+                    ticks: {
+                        color: 'black' // Color del texto de las etiquetas del eje y
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: y_unit,
+                        color: 'black',
+                    },
+                    ticks: {
+                        color: 'black' // Color del texto de las etiquetas del eje y
+                    },
+                    beginAtZero: true
+                }
+            },
+            layout: {
+                padding: {
+                    left: 8,
+                    right: 8,
+                    top: 8,
+                    bottom: 8,
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'black' // Color del texto de la leyenda
+                    }
+                }
+            }
+        }
+    });
+}
+
+function crearGrafica(data, estampa, key) {
+
+    // eliminarTabla('tablaDatos'); --> CREAR FUNCIÓN SIMILAR PARA ELIMINAR GRÁFICAS
+    // eliminarGraficoExistente();
+
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.classList.add('grafico-canvas');
+
+    titulo = key;
+    if (titulo === 'TEMP') {
+        titulo = 'Temperatura exterior';
+        createChart(ctx, titulo, estampa, data.TEMP, '#FAA50050', '#FAA500','Grados Celsius (°C)');
+    } else if (titulo === 'TEMPNEV') {
+        titulo = 'Temperatura nevera';
+        createChart(ctx, titulo, estampa, data.TEMPNEV, '#7BA0C050', '#7BA0C0','Grados Celsius (°C)');
+    } else if (titulo === 'HUM') {
+        titulo = 'Humedad exterior';
+        createChart(ctx, titulo, estampa, data.HUM,'#2667FF50', '#2667FF', 'Porcentaje (%)');
+    } else if (titulo === 'HUMNEV') {
+        titulo = 'Humedad nevera';
+        createChart(ctx, titulo, estampa, data.HUMNEV,'#9B9B8750', '#9B9B87', 'Porcentaje (%)');
+    } else if (titulo === 'LUX') {
+        titulo = 'Luminosidad';
+        createChart(ctx, titulo, estampa, data.LUX, '#FFE90050', '#FFE900','Lux (lx)');
+    } else if (titulo === 'VV') {
+        titulo = 'Velocidad del viento';
+        createChart(ctx, titulo, estampa, data.VV, '#6050A850', '#6050A8','Velocidad (m/s)');
+    } 
+    return canvas;
+}
+
+function eliminarGraficoExistente() {
+    if (graficoExistente) {
+        graficoExistente.remove(); // Eliminar el gráfico existente si lo hay
+    }
 }
 
 // Función para convertir JSON a CSV
@@ -149,6 +250,34 @@ function downloadCSV() {
     // Hacer clic en el enlace para descargar el archivo
     downloadLink.click();
 }
+
+function mostrarGraficoAnterior() {
+    if (indiceGraficoActual > 0) {
+        indiceGraficoActual--;
+        mostrarGrafico();
+    }
+}
+
+// Función para mostrar el siguiente gráfico
+function mostrarGraficoSiguiente() {
+    if (indiceGraficoActual < graficos.length - 1) {
+        indiceGraficoActual++;
+        mostrarGrafico();
+    }
+}
+
+// Función para mostrar el gráfico actual
+function mostrarGrafico() {
+
+    console.log("Mostrando gráfico actual");
+    console.log("Contenedor actual:", contenedor);
+    // Eliminar todos los gráficos del contenedor
+    contenedor.innerHTML = '';
+
+    // Agregar el gráfico actual al contenedor
+    contenedor.appendChild(graficos[indiceGraficoActual]);
+}
+
 
 document.getElementById("myForm").addEventListener("submit", function(event){
     event.preventDefault(); // Evitar la acción predeterminada de envío del formulario
@@ -203,8 +332,19 @@ document.getElementById("myForm").addEventListener("submit", function(event){
             return; // No hagas nada si no hay datos disponibles
         }
 
+        var contenedor = document.getElementById('chartsContainer');
+        
+        for (var key in data) {
+            var canvas = crearGrafica(data, data.TIMESTAMP, key);
+            
+            graficos.push(canvas)
+        }
+
+        contenedor.appendChild(graficos[0]);
+
         var tabla = crearTabla(data);
         document.getElementById("tabla-scroll").appendChild(tabla);
+
 
         jsonData = data
 
@@ -242,3 +382,11 @@ new Vue({
       }
     }
 });
+
+const botonAnterior = document.getElementById('botonAnterior');
+const botonSiguiente = document.getElementById('botonSiguiente');
+const contenedor = document.getElementById('chartsContainer');
+
+// Agregar controladores de eventos de clic a los botones
+botonAnterior.addEventListener('click', mostrarGraficoAnterior);
+botonSiguiente.addEventListener('click', mostrarGraficoSiguiente);

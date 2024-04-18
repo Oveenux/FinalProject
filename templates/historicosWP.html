@@ -8,6 +8,7 @@
     <link rel="icon" href='../static/images/logo/logoNF.png' type="image/png">
     <link rel="stylesheet" href="../static/css/historicosEstilos.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -68,6 +69,16 @@
                     <div class="switch-inner"></div>
                   </div>
                   <span class="label-right">Tabla</span>
+                </div>
+                <div class="right-container" v-show="!isOn">
+                    <div id="chartsContainer">
+                        <!-- Aquí se agregarán dinámicamente los gráficos -->
+                    </div>
+                    <div class="cont-botonesDes">
+                            <!-- Botones de desplazamiento -->
+                        <button id="botonAnterior" class="boton-desplazamiento flecha-izquierda">Anterior</button>
+                        <button id="botonSiguiente" class="boton-desplazamiento flecha-derecha">Siguiente</button>
+                    </div>
                 </div>
                 <div id = "tabla-scroll" v-show="isOn"></div>
             </div>

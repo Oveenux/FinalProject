@@ -302,7 +302,7 @@ var ctx3 = document.getElementById('lumChart').getContext('2d');
 var lumChart = createChart(ctx3, 'Luminosidad', '#FFE90050', '#FFE900','Lux (lx)');
 
 var ctx4 = document.getElementById('windChart').getContext('2d');
-var windChart = createChart(ctx4, 'Velocidad del viento', '#6050A850', '#6050A8','Velocidad (Km/h)');
+var windChart = createChart(ctx4, 'Velocidad del viento', '#6050A850', '#6050A8','Velocidad (m/s)');
 
 
 setInterval(fetchDataAndDrawChart, 5000); 

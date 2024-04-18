@@ -199,6 +199,25 @@ button[type="submit"]:hover {
    background-color: #88B14B;  
 }
 
+#app {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;
+    flex-direction: column;
+}
+
+#chartsContainer {
+    width: 90%;
+    height: 90%;
+}
+
+.right-container{
+    width: 100%;
+    height: auto;
+}
+
 /* Estilo para la tabla */
 
 #tabla-scroll {
@@ -328,4 +347,38 @@ background-color: #ddd; /* Color de fondo de la pista al pasar el mouse */
 
 .on-color {
     background-color: #000;
+}
+
+.boton-desplazamiento {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Estilos para las flechas */
+.flecha-izquierda::before {
+    content: '\u25C0'; /* Código Unicode para la flecha izquierda */
+    margin-right: 5px;
+}
+
+.flecha-derecha::after {
+    content: '\u25B6'; /* Código Unicode para la flecha derecha */
+    margin-left: 5px;
+}
+
+.cont-botonesDes {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    margin-top: 20px;
+}
+
+.grafico-canvas {
+    width: 90%;
+    height: 90%;
+    max-width: 90vw;
+    max-height: 90vh;
 }
