@@ -33,7 +33,7 @@ function createChart(ctx, label, backgroundColor, borderColor, y_unit) {
                         color: 'black',
                     },
                     ticks: {
-                        color: 'black' // Color del texto de las etiquetas del eje y
+                        color: 'black' // Color del texto de las etiquetas del eje x
                     },
                 },
                 y: {
@@ -105,7 +105,7 @@ function createChart2V(ctx, label1, label2, borderColor1, borderColor2, y_unit) 
                         color: 'black',
                     },
                     ticks: {
-                        color: 'black' // Color del texto de las etiquetas del eje y
+                        color: 'black' // Color del texto de las etiquetas del eje x
                     },
                 },
                     

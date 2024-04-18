@@ -200,7 +200,7 @@ button[type="submit"]:hover {
 }
 
 #app {
-    height: auto;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center; /* Centra horizontalmente */
@@ -209,20 +209,20 @@ button[type="submit"]:hover {
 }
 
 #chartsContainer {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 95%;
 }
 
 .right-container{
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 /* Estilo para la tabla */
 
 #tabla-scroll {
     display: inline-block;
-    max-height: calc(10 * (3em + 2px));
+    max-height: calc(10 * (4em + 2px));
     overflow-y: auto;
     width: cover;
 }
@@ -353,32 +353,43 @@ background-color: #ddd; /* Color de fondo de la pista al pasar el mouse */
     font-size: 18px;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #000;
+    color: #fff;
 }
 
-/* Estilos para las flechas */
-.flecha-izquierda::before {
-    content: '\u25C0'; /* Código Unicode para la flecha izquierda */
-    margin-right: 5px;
-}
-
-.flecha-derecha::after {
-    content: '\u25B6'; /* Código Unicode para la flecha derecha */
-    margin-left: 5px;
+.boton-desplazamiento:hover {
+    background-color: #88B14B;
 }
 
 .cont-botonesDes {
     display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    margin-top: 20px;
+    justify-content: center; 
+    gap: 10px;
+}
+
+#botonAnterior,
+#botonSiguiente {
+    display: none;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+}
+
+#mensajeGraficas{
+    display: none;
+    font-size: 18px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; 
 }
 
 .grafico-canvas {
-    width: 90%;
-    height: 90%;
-    max-width: 90vw;
-    max-height: 90vh;
+    width: 100%;
+    height: 100%;
 }

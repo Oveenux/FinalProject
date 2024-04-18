@@ -1,9 +1,8 @@
 
 var menuAbierto = false;
 var jsonData;
-var graficoExistente = null;
 var graficos = [];
-var indiceGraficoActual = 0;
+var indiceGraficoActual;
 
 
 function toggleMenu() {
@@ -130,11 +129,47 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
                 x: {
                     title: {
                         display: true,
-                        text: 'Tiempo (h)',
+                        text: 'Tiempo',
                         color: 'black',
+                        font: {
+                            size: 16,
+                        },
                     },
                     ticks: {
-                        color: 'black' // Color del texto de las etiquetas del eje y
+                        font: {
+                            size: 16,
+                        },
+                        color: 'black', // Color del texto de las etiquetas del eje x
+                        maxRotation: 0, // Ángulo de rotación máximo (en grados)
+                        minRotation: 0,
+                        callback: function(value, index, values) {
+
+                            function agregarCero(numero) {
+                                return numero < 10 ? "0" + numero : numero;
+                            }
+
+                            var fecha = new Date(estampa[value]);
+                            // Obtener los componentes de la fecha
+                            var dia = agregarCero(fecha.getDate());
+                            var mes = agregarCero(fecha.getMonth() + 1);
+                            var anio = fecha.getFullYear();
+                            var horas = fecha.getUTCHours();
+                            var minutos = agregarCero(fecha.getMinutes());
+
+                            var fechaFormateada = dia + "-" + mes + "-" + anio + " " + horas + ":" + minutos;
+
+                            var numEtiquetasAMostrar = 8; // Número específico de etiquetas a mostrar
+                            var intervalo = Math.max(Math.floor(values.length / numEtiquetasAMostrar), 1);
+        
+                            // Mostrar solo las etiquetas equiespaciadas según el número calculado
+                            if (index % intervalo === 0) {
+                                return fechaFormateada; // Mostrar la etiqueta original
+                            } else {
+                                return null; // Ocultar la etiqueta
+                            
+                            }
+                        }
+        
                     },
                 },
                 y: {
@@ -142,9 +177,15 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
                         display: true,
                         text: y_unit,
                         color: 'black',
+                        font: {
+                            size: 20,
+                        },
                     },
                     ticks: {
-                        color: 'black' // Color del texto de las etiquetas del eje y
+                        font: {
+                            size: 16,
+                        },
+                        color: 'black',
                     },
                     beginAtZero: true
                 }
@@ -160,8 +201,11 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
             plugins: {
                 legend: {
                     labels: {
-                        color: 'black' // Color del texto de la leyenda
-                    }
+                        font: {
+                            size: 20 ,
+                        },
+                        color: 'black',
+                    },
                 }
             }
         }
@@ -169,9 +213,6 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
 }
 
 function crearGrafica(data, estampa, key) {
-
-    // eliminarTabla('tablaDatos'); --> CREAR FUNCIÓN SIMILAR PARA ELIMINAR GRÁFICAS
-    // eliminarGraficoExistente();
 
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
@@ -198,12 +239,6 @@ function crearGrafica(data, estampa, key) {
         createChart(ctx, titulo, estampa, data.VV, '#6050A850', '#6050A8','Velocidad (m/s)');
     } 
     return canvas;
-}
-
-function eliminarGraficoExistente() {
-    if (graficoExistente) {
-        graficoExistente.remove(); // Eliminar el gráfico existente si lo hay
-    }
 }
 
 // Función para convertir JSON a CSV
@@ -260,7 +295,7 @@ function mostrarGraficoAnterior() {
 
 // Función para mostrar el siguiente gráfico
 function mostrarGraficoSiguiente() {
-    if (indiceGraficoActual < graficos.length - 1) {
+    if (indiceGraficoActual < graficos.length - 2) {
         indiceGraficoActual++;
         mostrarGrafico();
     }
@@ -268,14 +303,25 @@ function mostrarGraficoSiguiente() {
 
 // Función para mostrar el gráfico actual
 function mostrarGrafico() {
-
-    console.log("Mostrando gráfico actual");
-    console.log("Contenedor actual:", contenedor);
     // Eliminar todos los gráficos del contenedor
     contenedor.innerHTML = '';
 
     // Agregar el gráfico actual al contenedor
     contenedor.appendChild(graficos[indiceGraficoActual]);
+    actualizarMensajeGraficas();
+}
+
+function actualizarMensajeGraficas() {
+    const mensajeElemento = document.getElementById('mensajeGraficas');
+    const numeroActual = indiceGraficoActual + 1;
+    const total = graficos.length-1;
+    mensajeElemento.textContent = `${numeroActual}/${total}`;
+}
+
+function mostrarBotonesDes() {
+    botonAnterior.style.display = 'block';
+    botonSiguiente.style.display = 'block';
+    mensajeGraficas.style.display = 'block';
 }
 
 
@@ -284,6 +330,12 @@ document.getElementById("myForm").addEventListener("submit", function(event){
 
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     var checkboxesMarcados = [];
+
+    var contenedor = document.getElementById('chartsContainer');
+
+    graficos.length = 0;
+    indiceGraficoActual = 0
+    contenedor.innerHTML = '';
 
     checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
@@ -331,16 +383,15 @@ document.getElementById("myForm").addEventListener("submit", function(event){
             console.log('No hay datos disponibles');
             return; // No hagas nada si no hay datos disponibles
         }
-
-        var contenedor = document.getElementById('chartsContainer');
         
         for (var key in data) {
             var canvas = crearGrafica(data, data.TIMESTAMP, key);
-            
             graficos.push(canvas)
         }
 
         contenedor.appendChild(graficos[0]);
+        mostrarBotonesDes();
+        actualizarMensajeGraficas();
 
         var tabla = crearTabla(data);
         document.getElementById("tabla-scroll").appendChild(tabla);
