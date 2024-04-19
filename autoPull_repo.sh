@@ -1,4 +1,4 @@
-# Test 20
+# Script for automatic deployment of changes in the repository
 
 imprimir_mensaje_pull() {
     local contador="$1"
@@ -31,5 +31,5 @@ while true; do
     ((contador++))
     repetir_caracter '='
     # Espera 5 minutos antes de la próxima ejecución
-    sleep 3
+    sleep 300
 done
