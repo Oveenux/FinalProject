@@ -103,7 +103,6 @@ def actualizar_ultimoDato():
         
     else:
 
-        print('Hola soy oveenux')
         print("No hay nuevos datos")
         
         cursor.close()
