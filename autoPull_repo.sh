@@ -1,3 +1,5 @@
+# Test 20
+
 imprimir_mensaje_pull() {
     local contador="$1"
     local resultado="$2"
