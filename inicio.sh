@@ -52,7 +52,7 @@ sudo pip install Flask			# Library for Web Server
 repetir_caracter '-'
 pip install numpy
 repetir_caracter '-'
-pip install mysql-connector-python	# Library for connection to database
+sudo pip install mysql-connector-python	# Library for connection to database
 repetir_caracter '-'
 
 
