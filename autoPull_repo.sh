@@ -7,10 +7,14 @@ repetir_caracter() {
 
 contador=1
 while true; do
-    if git pull origin main; then
-        echo -e "\e[32mPull $contador: Exitoso - - [$(TZ='America/Bogota' date +"%F %T")]\e[0m"
+    if salida=$(git pull origin main 2>&1); then
+        echo -e "\e[32mPull $contador: $(TZ='America/Bogota' date +"%T")\e[0m"
     else
-        echo -e "\e[31mPull $contador: Fallido - - [$(TZ='America/Bogota' date +"%F %T")]\e[0m"
+        if [[ $salida == *"Please commit your changes or stash them before you merge"* ]]; then
+            echo -e "\e[31mError: Necesitas hacer commit o stash de tus cambios antes de hacer merge.\e[0m"
+        else
+            echo -e "\e[31mError al hacer pull en el intento $contador: $(TZ='America/Bogota' date +"%F %T")\e[0m"
+        fi
     fi
     ((contador++))
     repetir_caracter '='
