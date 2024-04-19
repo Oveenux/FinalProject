@@ -16,6 +16,7 @@ while true; do
             echo -e "\e[31mError al hacer pull en el intento $contador: $(TZ='America/Bogota' date +"%F %T")\e[0m"
         fi
     fi
+    #prueba20
     ((contador++))
     repetir_caracter '='
     # Espera 5 minutos antes de la próxima ejecución
