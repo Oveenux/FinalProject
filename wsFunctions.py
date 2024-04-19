@@ -45,7 +45,6 @@ def get_data():
 
         global ultimo_almacenado
         ultimo_almacenado = timestamps[-1]
-        print('ultimo = ', ultimo_almacenado)
 
         cursor.close()
         conn.close()
@@ -86,8 +85,7 @@ def actualizar_ultimoDato():
     timestamp = ultimoFila[0]
 
     if ultimo_almacenado != timestamp :
-        print("Ultimo timestamp:", ultimo_almacenado)
-        print("Nuevo timestamp: ", timestamp)
+        
         print("Nuevos datos")
 
         variables = []
