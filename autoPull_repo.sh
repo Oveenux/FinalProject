@@ -12,5 +12,5 @@ while true; do
     ((contador++))
     repetir_caracter '='
     # Espera 5 minutos antes de la próxima ejecución
-    sleep 3
+    sleep 300
 done
