@@ -232,7 +232,7 @@ button[type="submit"]:hover {
 }
   
 #tabla-scroll::-webkit-scrollbar-thumb {
-background-color: #888; /* Color del "pulgar" de la barra de desplazamiento */
+background-color: #AAA; /* Color del "pulgar" de la barra de desplazamiento */
 border-radius: 6px; /* Radio de borde del "pulgar" */
 }
 
