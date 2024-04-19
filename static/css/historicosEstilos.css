@@ -67,9 +67,9 @@ body::before {
 /* Estilos para el nombre */
 h1 {
     margin: 0; /* Eliminar márgenes */
-    color: #000; /* Color del texto predeterminado */
+    color: #000;
     display: inline-block; /* Para que cada letra ocupe su propio espacio */
-    font-size: 64px; /* Tamaño del texto */
+    font-size: 64px;
 }
 
 h1:hover {
