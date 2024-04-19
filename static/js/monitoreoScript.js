@@ -288,9 +288,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-
-
 var ctx1 = document.getElementById('tempChart').getContext('2d');
 var tempChart = createChart2V(ctx1, 'Temperatura exterior', 'Temperatura nevera', '#FAA500', '#7BA0C0', 'Grados Celsius (°C)');
 
