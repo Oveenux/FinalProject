@@ -247,7 +247,6 @@ function fetchDataAndDrawChart() {
         })
         .then(data => {
             if (Object.keys(data).length === 0) {
-                console.log('No hay datos disponibles');
                 return; // No hagas nada si no hay datos disponibles
             }
 
