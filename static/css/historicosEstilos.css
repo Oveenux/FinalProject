@@ -372,8 +372,17 @@ background-color: #ddd; /* Color de fondo de la pista al pasar el mouse */
 #botonAnterior,
 #botonSiguiente {
     display: none;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
+    justify-content: center;
+    align-items: center;
+}
+
+#botonAnterior .icon,
+#botonSiguiente .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px; 
+    height: 18px;
 }
 
 #mensajeGraficas{
