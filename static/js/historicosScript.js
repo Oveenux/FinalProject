@@ -156,7 +156,7 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
                             var horas = fecha.getUTCHours();
                             var minutos = agregarCero(fecha.getMinutes());
 
-                            var fechaFormateada = dia + "-" + mes + "-" + anio + " " + horas + ":" + minutos;
+                            var fechaFormateada = anio  + "-" + mes + "-" + dia + " " + horas + ":" + minutos;
 
                             var numEtiquetasAMostrar = 8; // Número específico de etiquetas a mostrar
                             var intervalo = Math.max(Math.floor(values.length / numEtiquetasAMostrar), 1);
