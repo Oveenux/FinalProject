@@ -19,10 +19,12 @@ contador=1
 while true; do
     if salida=$(git pull origin main 2>&1); then
         echo "$salida"
+        mensaje_commit=$(git log --pretty=format:"%s" -1)
         if [[ $salida == *"Already up to date"* ]]; then
-            # No hagas nada si ya está actualizado
+            echo "Último commit - - $mensaje_commit"
             imprimir_mensaje_pull "$contador" "SIN CAMBIOS" "34"
         else
+            echo "Nuevo commit - - $mensaje_commit"
             imprimir_mensaje_pull "$contador" "EXITOSO!" "32"
         fi
     else
