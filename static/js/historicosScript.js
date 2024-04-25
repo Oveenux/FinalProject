@@ -118,7 +118,7 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
                 data: variable,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
-                borderWidth: 3,
+                borderWidth: 2,
                 fill: true,
                 pointRadius: 0,
                 cubicInterpolationMode: 'monotone',
