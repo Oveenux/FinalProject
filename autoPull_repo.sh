@@ -19,13 +19,18 @@ contador=1
 while true; do
     if salida=$(git pull origin main 2>&1); then
         echo "$salida"
-        imprimir_mensaje_pull "$contador" "Exitoso" "32"
+        if [[ $salida == *"Already up to date"* ]]; then
+            # No hagas nada si ya está actualizado
+            imprimir_mensaje_pull "$contador" "SIN CAMBIOS" "34"
+        else
+            imprimir_mensaje_pull "$contador" "EXITOSO!" "32"
+        fi
     else
         if [[ $salida == *"Please commit your changes or stash them before you merge"* ]]; then
             echo -e "\e[31mError: Necesitas hacer commit o stash de tus cambios antes de hacer merge.\e[0m"
-            imprimir_mensaje_pull "$contador" "Fallido" "31"
+            imprimir_mensaje_pull "$contador" "FALLIDO" "31"
         else
-            imprimir_mensaje_pull "$contador" "Fallido" "31"
+            imprimir_mensaje_pull "$contador" "FALLIDO" "31"
         fi
     fi
     ((contador++))
