@@ -18,7 +18,7 @@ function createChart(ctx, label, backgroundColor, borderColor, y_unit) {
                 data: [],
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
-                borderWidth: 1,
+                borderWidth: 2,
                 fill: true,
                 pointRadius: 0,
                 cubicInterpolationMode: 'monotone'
@@ -289,13 +289,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 var ctx1 = document.getElementById('tempChart').getContext('2d');
-var tempChart = createChart2V(ctx1, 'Temperatura exterior', 'Temperatura nevera', '#FAA500', '#7BA0C0', 'Grados Celsius (°C)');
+var tempChart = createChart2V(ctx1, 'Temperatura exterior', 'Temperatura nevera', '#558367', '#7BA0C0', 'Grados Celsius (°C)');
 
 var ctx2 = document.getElementById('humidityChart').getContext('2d');
-var humidityChart = createChart2V(ctx2, 'Humedad exterior', 'Humedad nevera', '#2667FF', 'rgba(155, 155, 155, 1)', 'Porcentaje (%)');
+var humidityChart = createChart2V(ctx2, 'Humedad exterior', 'Humedad nevera', '#2667FF', '#888888', 'Porcentaje (%)');
 
 var ctx3 = document.getElementById('lumChart').getContext('2d');
-var lumChart = createChart(ctx3, 'Luminosidad', '#FFE90050', '#FFE900','Lux (lx)');
+var lumChart = createChart(ctx3, 'Luminosidad', '#FAA50050', '#FAA500', 'Lux (lx)');
 
 var ctx4 = document.getElementById('windChart').getContext('2d');
 var windChart = createChart(ctx4, 'Velocidad del viento', '#6050A850', '#6050A8','Velocidad (m/s)');

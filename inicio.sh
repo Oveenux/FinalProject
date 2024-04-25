@@ -31,32 +31,32 @@ repetir_caracter() {
 
 sudo apt update
 sudo apt upgrade -y
-echo -e "\e[32m Updated packages \e[0m"
+echo -e "\e[32m Packages Updated \e[0m"
 repetir_caracter '='
 
 # ---------- GIT AND GITHUB ----------
 
 sudo apt install git -y
-echo -e "\e[32m Installed git \e[0m"
+echo -e "\e[32m git Installed  \e[0m"
 repetir_caracter '-'
 git clone https://github.com/Oveenux/FinalProject.git
-echo -e "\e[32m Cloned repository \e[0m"
+echo -e "\e[32m Repository Cloned \e[0m"
 repetir_caracter '='
 
 # ---------- PYTHON LIBRARIES ----------
 
 sudo apt-get install python3-pip -y
-echo -e "\e[32m Installed pip for Pyhton \e[0m"
+echo -e "\e[32m pip for Pyhton Installed \e[0m"
 repetir_caracter '-'
-sudo pip install Flask			# Library for Web Server
-repetir_caracter '-'
-pip install numpy
+sudo pip install Flask			        # Library for Web Server
+echo -e "\e[32m Flask Installed \e[0m"
 repetir_caracter '-'
 sudo pip install mysql-connector-python	# Library for connection to database
+echo -e "\e[32m MySQL connector for Python Installed \e[0m"
 repetir_caracter '-'
 
 
-echo -e "\e[32m Installed libraries \e[0m"
+echo -e "\e[32m Libraries Installed \e[0m"
 repetir_caracter '='
 
 echo -e "\e[32m FINISHED! \e[0m"

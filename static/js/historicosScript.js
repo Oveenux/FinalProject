@@ -118,10 +118,10 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
                 data: variable,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
-                borderWidth: 1,
+                borderWidth: 3,
                 fill: true,
                 pointRadius: 0,
-                cubicInterpolationMode: 'monotone'
+                cubicInterpolationMode: 'monotone',
             }]
         },
         options: {
@@ -221,22 +221,22 @@ function crearGrafica(data, estampa, key) {
     titulo = key;
     if (titulo === 'TEMP') {
         titulo = 'Temperatura exterior';
-        createChart(ctx, titulo, estampa, data.TEMP, '#FAA50050', '#FAA500','Grados Celsius (°C)');
+        createChart(ctx, titulo, estampa, data.TEMP, '#55836760', '#558367','Grados Celsius (°C)');
     } else if (titulo === 'TEMPNEV') {
         titulo = 'Temperatura nevera';
-        createChart(ctx, titulo, estampa, data.TEMPNEV, '#7BA0C050', '#7BA0C0','Grados Celsius (°C)');
+        createChart(ctx, titulo, estampa, data.TEMPNEV, '#7BA0C060', '#7BA0C0','Grados Celsius (°C)');
     } else if (titulo === 'HUM') {
         titulo = 'Humedad exterior';
-        createChart(ctx, titulo, estampa, data.HUM,'#2667FF50', '#2667FF', 'Porcentaje (%)');
+        createChart(ctx, titulo, estampa, data.HUM,'#2667FF60', '#2667FF', 'Porcentaje (%)');
     } else if (titulo === 'HUMNEV') {
         titulo = 'Humedad nevera';
-        createChart(ctx, titulo, estampa, data.HUMNEV,'#9B9B8750', '#9B9B87', 'Porcentaje (%)');
+        createChart(ctx, titulo, estampa, data.HUMNEV,'#88888860', '#888888', 'Porcentaje (%)');
     } else if (titulo === 'LUX') {
         titulo = 'Luminosidad';
-        createChart(ctx, titulo, estampa, data.LUX, '#FFE90050', '#FFE900','Lux (lx)');
+        createChart(ctx, titulo, estampa, data.LUX, '#FAA50060', '#FAA500', 'Lux (lx)');
     } else if (titulo === 'VV') {
         titulo = 'Velocidad del viento';
-        createChart(ctx, titulo, estampa, data.VV, '#6050A850', '#6050A8','Velocidad (m/s)');
+        createChart(ctx, titulo, estampa, data.VV, '#6050A860', '#6050A8','Velocidad (m/s)');
     } 
     return canvas;
 }
