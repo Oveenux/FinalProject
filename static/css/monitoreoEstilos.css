@@ -68,7 +68,7 @@ body::before {
 .container {
     display: flex;
     justify-content: space-between;
-    max-width: 95%;
+    width: 95%;
     margin: 0 auto;
     padding: 10px;
     margin-bottom: 0;
@@ -102,79 +102,78 @@ h2:hover {
 }
 
 .infoGrid-container-2 {
-    width: 15%;
+    width: 13%;
     height: auto;
     display: grid;
     grid-template-rows: repeat(6, 1fr); /* Añadido para tener 3 filas */
     gap: 5px ;
     text-align: center; /* Esto centrará el texto horizontalmente */
-    margin: 0 auto;
+    margin: 0 0;
     margin-right: 0px;
     font-size: 20px;
     padding: 5px;
 }
 
-.infoGrid-container-2 div {
-    align-items: center; 
-    font-weight: bold;
-    padding: 10px;
-    height: 80%;
-    align-self: center;
+.infoGrid-container-2 .value {
+    font-size: 50px; /* Ajusta el tamaño de la fuente según sea necesario */
+    margin: 0 0;
 }
 
-.infoGrid-container-2 .value {
-    font-size: 40px; /* Ajusta el tamaño de la fuente según sea necesario */
+.boxes{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 99%;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
 }
 
 .box1 {
-    background-color: #55836785; /* Color para el primer div */
-    border: 1px solid #ccc; /* Borde para visualización */
-
+    background-color: #55836785;
 }
 
 .box2 {
-    background-color: #7BA0C085; /* Color para el segundo div */
-    border: 1px solid #ccc; /* Borde para visualización */
+    background-color: #7BA0C085;
 }
 
 .box3 {
-    background-color: #2667FF85; /* Color para el tercer div */
-    border: 1px solid #ccc; /* Borde para visualización */
+    background-color: #2667FF85;
 }
 
 .box4 {
-    background-color: #9B9B9B85; /* Color para el cuarto div */
-    border: 1px solid #ccc; /* Borde para visualización */
+    background-color: #9B9B9B85;
 }
 
 .box5 {
-    background-color: #FAA50085; /* Color para el quinto div */
-    border: 1px solid #ccc; /* Borde para visualización */
+    background-color: #FAA50085;
 }
 
 .box6 {
-    background-color: #6050A885; /* Color para el sexto div */
-    border: 1px solid #ccc; /* Borde para visualización */
+    background-color: #6050A885;
 }
 
 .grid-container {
-    width: 85%;
+    width: 87%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     flex-wrap: wrap;
     gap: 5px;
-    margin: 0 auto;
+    margin: 0 0;
     padding: 5px;
 }
 
 .chart-container {
     flex: 1;
-    min-width: 400px; /* Establece un ancho mínimo para las gráficas */
-    min-height: 200px;
+    width: 100%; /* Establece un ancho mínimo para las gráficas */
+    height: 100%;
 }
 
 canvas {
     width: 100%;
-    height: auto;
+    height: 100%;
     border: 1px solid #ccc; /* Opcional: agregar un borde a las gráficas */
 }
