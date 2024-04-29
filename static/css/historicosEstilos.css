@@ -84,7 +84,9 @@ h1 .letra-i {
 h2 {
     display: flex;
     justify-content: center;
-    margin-right: 180px;
+    margin-right: 190px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-size: 32px;
 }
 
@@ -116,6 +118,7 @@ h2:hover {
     flex-direction: column;
     align-items: center; 
     width: 450px;
+    margin-top: 15px;
 }
 
 #tabla-container {
