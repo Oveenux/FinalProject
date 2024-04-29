@@ -18,14 +18,17 @@ def index3():
     return render_template('historicosWP.html')
 
 @app.route('/get_data', methods = ['POST'])
+# Route for initial charts data
 def get_data():
     return func.get_data()
 
 @app.route('/stream', methods = ['POST'])
+# Route for updating of charts
 def stream():
     return func.actualizar_ultimoDato()
 
 @app.route('/search_data', methods=['POST'])
+# Route for historical data search
 def search_data():
     return func.search_data()
 
