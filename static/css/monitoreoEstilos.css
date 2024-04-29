@@ -69,11 +69,11 @@ body::before {
     display: flex;
     justify-content: space-between;
     width: 95%;
+    height: 100%;
     margin: 0 auto;
     padding: 10px;
     margin-bottom: 0;
     align-items: stretch;
-    height: 100%;
 }
 
 /* Estilos para el nombre */
