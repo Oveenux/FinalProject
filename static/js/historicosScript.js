@@ -25,6 +25,23 @@ document.addEventListener('click', function(event) {
     }
 });
 
+function agregarCero(numero) {
+    return numero < 10 ? "0" + numero : numero;
+}
+
+function formatearFecha(estampa) {
+    var fecha = new Date(estampa);
+    var dia = agregarCero(fecha.getDate());
+    var mes = agregarCero(fecha.getMonth() + 1);
+    var anio = fecha.getFullYear();
+    var horas = agregarCero(fecha.getUTCHours());
+    var minutos = agregarCero(fecha.getMinutes());
+    var segundos = agregarCero(fecha.getSeconds());
+
+    return anio + "-" + mes + "-" + dia + " " + horas + ":" + minutos + ":" + segundos;
+}
+
+
 function setDateTimeNow() {
     // Obtener la fecha y hora actual
     var currentDate = new Date();
@@ -88,16 +105,23 @@ function crearTabla(data) {
     var filaEncabezado = encabezado.insertRow();
     
     // Crear encabezados de la tabla
+    var thIndex = document.createElement('th');
+    thIndex.textContent = "N°";
+    filaEncabezado.appendChild(thIndex);
+
     var keys = Object.keys(data);
     for (var key in data) {
         var th = document.createElement('th');
         titulo = key;
-        th.textContent = tituloEncabezados(titulo)
+        th.textContent = tituloEncabezados(titulo);
         filaEncabezado.appendChild(th);
     }
 
     for (var i = 0; i < data[key].length; i++) {
         var fila = tabla.insertRow();
+
+        var cellIndex = fila.insertCell();
+        cellIndex.textContent = i+1;
         
         for (var j = 0; j < keys.length; j++) {
             var Cell = fila.insertCell();
@@ -144,26 +168,15 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
                         minRotation: 0,
                         callback: function(value, index, values) {
 
-                            function agregarCero(numero) {
-                                return numero < 10 ? "0" + numero : numero;
-                            }
-
-                            var fecha = new Date(estampa[value]);
-                            // Obtener los componentes de la fecha
-                            var dia = agregarCero(fecha.getDate());
-                            var mes = agregarCero(fecha.getMonth() + 1);
-                            var anio = fecha.getFullYear();
-                            var horas = fecha.getUTCHours();
-                            var minutos = agregarCero(fecha.getMinutes());
-
-                            var fechaFormateada = anio  + "-" + mes + "-" + dia + " " + horas + ":" + minutos;
+                            var fechaConSegundos = estampa[value]
+                            var fechaSinSegundos = fechaConSegundos.slice(0, -3);
 
                             var numEtiquetasAMostrar = 8; // Número específico de etiquetas a mostrar
                             var intervalo = Math.max(Math.floor(values.length / numEtiquetasAMostrar), 1);
         
                             // Mostrar solo las etiquetas equiespaciadas según el número calculado
                             if (index % intervalo === 0) {
-                                return fechaFormateada; // Mostrar la etiqueta original
+                                return fechaSinSegundos; // Mostrar la etiqueta original
                             } else {
                                 return null; // Ocultar la etiqueta
                             
@@ -246,20 +259,9 @@ function convertToCSV(data) {
     // Obtener las claves (nombres de las variables)
     const keys = Object.keys(data);
   
-    // Formatear la fecha si existe
-    function formatDate(value) {
-      // Si es una fecha, devolvemos el valor encerrado en comillas
-      return value instanceof Date ? `"${value}"` : value;
-    }
-  
-    // Reemplazar coma por punto en ciertas columnas
-    function replaceComma(value, key) {
-      return key === "TIMESTAMP" ? value.replace(/,/g, '.') : value;
-    }
-  
     // Convertir los datos a una matriz 2D
     const rows = data[keys[0]].map((_, index) => {
-      return keys.map(key => formatDate(replaceComma(data[key][index], key)));
+      return keys.map(key => data[key][index]);
     });
   
     // Construir el contenido CSV
@@ -392,6 +394,12 @@ document.getElementById("myForm").addEventListener("submit", function(event){
         contenedor.appendChild(graficos[0]);
         mostrarBotonesDes();
         actualizarMensajeGraficas();
+
+        for (var i = 0; i < data.TIMESTAMP.length; i++) {
+            var estampa = data.TIMESTAMP[i];
+            var fechaFormateada = formatearFecha(estampa);
+            data.TIMESTAMP[i] = fechaFormateada;
+        }
 
         var tabla = crearTabla(data);
         document.getElementById("tabla-scroll").appendChild(tabla);
