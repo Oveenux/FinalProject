@@ -111,12 +111,11 @@ h2:hover {
     gap: 5px ;
     text-align: center;
     margin: 0px;
-    font-size: 20px;
     padding: 5px;
 }
 
 .infoGrid-container-2 .value {
-    font-size: 40px;
+    font-size: 3vw;
 }
 
 .boxes{
@@ -129,6 +128,7 @@ h2:hover {
     height: 98%;
     border: 1px solid #ccc;
     gap: 5px;
+    font-size: 1vw;
 }
 
 .box1 {
