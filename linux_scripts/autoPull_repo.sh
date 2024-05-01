@@ -32,7 +32,6 @@ while true; do
         if [[ $salida == *"Already up to date"* ]]; then
             if [[ $request_anterior != *"Already up to date"* ]]; then
                 echo "$salida"
-                info_pull "Último commit (#$numero_commit)"
                 imprimir_mensaje_pull "$contador" "SIN CAMBIOS" "34"
                 request_anterior="$salida"
                 ((contador++))
