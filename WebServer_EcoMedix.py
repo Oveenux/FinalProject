@@ -2,9 +2,9 @@ from flask import Flask, render_template
 from access_config.host_AD import hostConfig
 import wsFunctions as func
 
-app = Flask(__name__)
-
 # WEB SERVER ECOMEDIX
+
+app = Flask(__name__)
 
 @app.route('/')
 def index():
