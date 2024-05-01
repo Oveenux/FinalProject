@@ -20,28 +20,28 @@ body::before {
     left: 0; /* Coloca el elemento de fondo en la parte izquierda de la página */
     width: 100%; /* Establece el ancho al 100% del cuerpo */
     height: 100%; 
-    filter: brightness(30%); 
+    filter: brightness(15%); 
     z-index: -1;
 }
 
 .container {
-    max-width: 1200px;
+    width: 85%;
     margin: 0 auto;
     padding: 20px;
-    margin-bottom: 0;
 }
 
 h1 {
     text-align: center;
     margin-top: 0px;
-    color: #fff; /* Cambia el color del texto a gris oscuro (#333) */
+    margin-bottom: 10px;
+    color: #fff; 
     transition: color 0.3s; /* Agrega una transición de color de 0.3 segundos */
     cursor: pointer; /* Cambia el cursor cuando pasa sobre el h1 */
-    font-size: 70px; /* Aumenta el tamaño de la fuente a 36px */
+    font-size: 5vw; 
 }
 
 h1 .letra-i {
-            color: #88B14B; /* Cambiar color de la letra */
+    color: #88B14B; /* Cambiar color de la letra */
 }
 
 /* Cambia el color del texto cuando el cursor pasa sobre el h1 */
@@ -67,7 +67,7 @@ h1:hover {
     height: cover;
     color: #fff; /* Texto blanco */
     text-align: right;
-    padding: 10px 0;
+    padding: 10px;
     margin-right: 10px;
 }
 
@@ -109,6 +109,11 @@ h1:hover {
     left: 50%; /* Centrado horizontalmente */
     transform: translateX(-50%);
     z-index: 1; /* Para que esté encima de otros elementos */
+}
+
+#email {
+    color: rgb(28, 100, 255);
+    text-decoration: underline;
 }
 
 /* Estilo para el botón "Cerrar" del cuadro de texto */
@@ -211,5 +216,9 @@ h1:hover {
 @media screen and (max-width: 768px) {
     .card {
         width: 90%;
+    }
+
+    body {
+        background-color: #888;
     }
 }

@@ -116,7 +116,7 @@ h2:hover {
     font-size: 1vw;
 }
 
-.boxes:hover{
+.boxes:hover {
     background-color: #000;
     color: #FFF;
     cursor: default;
