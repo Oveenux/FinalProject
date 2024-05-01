@@ -23,10 +23,8 @@ repetir_caracter() {
 contador=1
 request_anterior=0
 
-while true; do
-    
+while true; do 
     if salida=$(git pull origin main 2>&1); then
-        
         numero_commit=$(git rev-list --count HEAD)
         mensaje_commit=$(git log --pretty=format:"%s" -1)
         fecha_commit=$(git log -1 --format="%ad" --date=iso | cut -c 1-19)
@@ -38,6 +36,7 @@ while true; do
                 imprimir_mensaje_pull "$contador" "SIN CAMBIOS" "34"
                 request_anterior="$salida"
                 ((contador++))
+                repetir_caracter '='
             fi
         else
             echo "$salida"
@@ -45,16 +44,18 @@ while true; do
             imprimir_mensaje_pull "$contador" "EXITOSO!" "32"
             request_anterior="$salida"
             ((contador++))
+            repetir_caracter '='
         fi
     else
         if [[ $salida == *"Please commit your changes or stash them before you merge"* ]]; then
             echo -e "\e[31mError: Necesitas hacer commit o stash de tus cambios antes de hacer merge.\e[0m"
             imprimir_mensaje_pull "$contador" "FALLIDO" "31"
+            repetir_caracter '='
         else
             imprimir_mensaje_pull "$contador" "FALLIDO" "31"
+            repetir_caracter '='
         fi
     fi
-    repetir_caracter '='
     # Espera 5 minutos antes de la próxima ejecución
     sleep 5
 done
