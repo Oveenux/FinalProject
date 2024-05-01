@@ -4,6 +4,8 @@ import mysql.connector
 import random
 import time
 
+# Functions for web server
+
 def conectar():
     try:
         # Start the MySQL database connection.
