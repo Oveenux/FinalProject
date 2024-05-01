@@ -9,13 +9,11 @@ imprimir_mensaje_pull() {
 
 info_pull() {
     local numero="$1"
-
     mensaje_commit=$(git log --pretty=format:"%s" -1)
     fecha_commit=$(git log -1 --format="%ad" --date=iso | cut -c 1-19)
     autor_commit=$(git log -1 --format="%an")
-
-    echo -e "\e[36m${numero} - - $mensaje_commit - - [$fecha_commit]\e[0m"
-    echo -e "\e[36mRealizado por $autor_commit\e[0m"
+    echo -e "\e[35m${numero} - - $mensaje_commit - - [$fecha_commit]\e[0m"
+    echo -e "\e[35mRealizado por $autor_commit\e[0m"
 }
 
 repetir_caracter() {
@@ -52,7 +50,7 @@ while true; do
         fi
     else
         if [[ $salida == *"Please commit your changes or stash them before you merge"* ]]; then
-            echo -e "\e[31mError: Necesitas hacer commit o stash de tus cambios antes de hacer merge.\e[0m"
+            echo -e "\e[31mError: Necesitas hacer commit o stash de tus cambios antes de hacer merge\e[0m"
             imprimir_mensaje_pull "$contador" "FALLIDO" "31"
             repetir_caracter '='
         else
