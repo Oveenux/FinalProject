@@ -4,6 +4,8 @@ import wsFunctions as func
 
 app = Flask(__name__)
 
+# WEB SERVER EcoMedix
+
 @app.route('/')
 def index():
     # Función para renderizar la plantilla
