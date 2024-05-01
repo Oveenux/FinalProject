@@ -31,12 +31,12 @@ def get_data():
     try:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
+        
         # Consulta para obtener los últimos 10 datos
         sql = "SELECT TIMESTAMP, TEMP, TEMPNEV, HUM, HUMNEV, LUX, VV FROM datos ORDER BY NUM DESC LIMIT 10"
         cursor.execute(sql)
         result = cursor.fetchall()
 
-        # Procesa los resultados de la consulta
         timestamps = [row['TIMESTAMP'] for row in reversed(result)]
         tempExti = [row['TEMP'] for row in reversed(result)]
         tempNevi = [row['TEMPNEV'] for row in reversed(result)]
