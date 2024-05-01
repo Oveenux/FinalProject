@@ -56,6 +56,6 @@ while true; do
             repetir_caracter '='
         fi
     fi
-    # Espera 5 minutos antes de la próxima ejecución
-    sleep 5
+    # Espera 5 minutos (300 segundos) antes de la próxima ejecución
+    sleep 300
 done
