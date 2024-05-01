@@ -2,7 +2,7 @@
 
 body {
     font-family: "Times New Roman", Times, serif;
-    background-color: #EEE;
+    background-color: #FFF;
 }
 
 /* Estilos para la imagen */
@@ -114,6 +114,12 @@ h2:hover {
     border: 1px solid #ccc;
     gap: 5px;
     font-size: 1vw;
+}
+
+.boxes:hover{
+    background-color: #000;
+    color: #FFF;
+    cursor: default;
 }
 
 .box1 {
