@@ -15,4 +15,4 @@ Ing. María Gabriela Calle Torres
 Ing. Rafael De Jesus Castillo Sierra  
 
 1. **ABSTRACT**  
-This project develops a monitoring system for environmental and electrical variables called **EcoMedix**.
+This project develops a monitoring system for environmental and electrical variables called **EcoMedix**. The repository FinalProject contains all scripts needed for web server. 

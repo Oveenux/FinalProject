@@ -16,6 +16,7 @@ def conectar():
         return None
 
 def generar_datos():
+    # function for simulation of data
     while True:
         timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
         tempExt = random.randint(25,35)
@@ -102,7 +103,6 @@ def actualizar_ultimoDato():
         return jsonify({"label": timestamp, "variables":variables}) 
         
     else:
-
         print("No hay nuevos datos")
         
         cursor.close()
