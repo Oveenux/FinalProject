@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Función para renderizar la plantilla
     return render_template('inicioWP.html')
 
 @app.route('/monitoreo')
