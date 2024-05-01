@@ -4,7 +4,7 @@ import wsFunctions as func
 
 app = Flask(__name__)
 
-# WEB SERVER EcoMedix
+# WEB SERVER ECOMEDIX
 
 @app.route('/')
 def index():
