@@ -7,6 +7,12 @@ imprimir_mensaje_pull() {
     echo -e "\e[${color}mPull $contador: $resultado - - [$(TZ='America/Bogota' date +"%F %T")]\e[0m"
 }
 
+info_pull() {
+    local numero="$1"
+    echo -e "\e[36m${numero} - - $mensaje_commit - - [$fecha_commit]\e[0m"
+    echo -e "\e[36mRealizado por $autor_commit\e[0m"
+}
+
 repetir_caracter() {
     local caracter="$1"
     local ancho=$(tput cols)
@@ -15,17 +21,30 @@ repetir_caracter() {
 }
 
 contador=1
+request_anterior=0
 
 while true; do
+    
     if salida=$(git pull origin main 2>&1); then
-        echo "$salida"
+        
+        numero_commit=$(git rev-list --count HEAD)
         mensaje_commit=$(git log --pretty=format:"%s" -1)
+        fecha_commit=$(git log -1 --format="%ad" --date=iso | cut -c 1-19)
+        autor_commit=$(git log -1 --format="%an")
         if [[ $salida == *"Already up to date"* ]]; then
-            echo "Último commit - - $mensaje_commit"
-            imprimir_mensaje_pull "$contador" "SIN CAMBIOS" "34"
+            if [[ $request_anterior != *"Already up to date"* ]]; then
+                echo "$salida"
+                info_pull "Último commit (#$numero_commit)"
+                imprimir_mensaje_pull "$contador" "SIN CAMBIOS" "34"
+                request_anterior="$salida"
+                ((contador++))
+            fi
         else
-            echo "Nuevo commit - - $mensaje_commit"
+            echo "$salida"
+            info_pull "COMMIT #$numero_commit"
             imprimir_mensaje_pull "$contador" "EXITOSO!" "32"
+            request_anterior="$salida"
+            ((contador++))
         fi
     else
         if [[ $salida == *"Please commit your changes or stash them before you merge"* ]]; then
@@ -35,7 +54,6 @@ while true; do
             imprimir_mensaje_pull "$contador" "FALLIDO" "31"
         fi
     fi
-    ((contador++))
     repetir_caracter '='
     # Espera 5 minutos antes de la próxima ejecución
     sleep 300
