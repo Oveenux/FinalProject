@@ -9,6 +9,11 @@ imprimir_mensaje_pull() {
 
 info_pull() {
     local numero="$1"
+
+    mensaje_commit=$(git log --pretty=format:"%s" -1)
+    fecha_commit=$(git log -1 --format="%ad" --date=iso | cut -c 1-19)
+    autor_commit=$(git log -1 --format="%an")
+
     echo -e "\e[36m${numero} - - $mensaje_commit - - [$fecha_commit]\e[0m"
     echo -e "\e[36mRealizado por $autor_commit\e[0m"
 }
@@ -23,12 +28,12 @@ repetir_caracter() {
 contador=1
 request_anterior=0
 
+numero_commit=$(git rev-list --count HEAD)
+info_pull "Último commit (#$numero_commit)"
+
 while true; do 
     if salida=$(git pull origin main 2>&1); then
         numero_commit=$(git rev-list --count HEAD)
-        mensaje_commit=$(git log --pretty=format:"%s" -1)
-        fecha_commit=$(git log -1 --format="%ad" --date=iso | cut -c 1-19)
-        autor_commit=$(git log -1 --format="%an")
         if [[ $salida == *"Already up to date"* ]]; then
             if [[ $request_anterior != *"Already up to date"* ]]; then
                 echo "$salida"
