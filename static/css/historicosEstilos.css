@@ -433,11 +433,6 @@ button[type="submit"]:hover {
     font-size: 1vw;
 }
 
-#variable-container:hover {
-    background-color: #88B14B;
-    cursor: default;
-}
-
 .flex {
     display: flex;
     flex-direction: column;
