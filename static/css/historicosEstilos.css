@@ -85,7 +85,6 @@ h2:hover {
     max-width: 100%;
     height: 100%;
     margin: 0 auto;
-    padding: 5px;
     margin-bottom: 0;
 }
 
@@ -279,6 +278,7 @@ button[type="submit"]:hover {
     border-radius: 50px;
     cursor: pointer;
     margin-top: 15px;
+    margin-bottom: 5px;
     font-size: 15px;
 }
 
@@ -392,4 +392,73 @@ button[type="submit"]:hover {
 .grafico-canvas {
     width: 100%;
     height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 65%;
+    margin: 0;
+}
+
+.boxes-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxes-container .value {
+    font-size: 3vw;
+}
+
+#variable-container {
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 150px;
+    margin-top: 10px;
+    border: 1px solid #888;
+    background-color: #ccc;
+    border-radius: 10px;
+    margin-right: 10px;
+    writing-mode: vertical-rl; /* Establece la escritura vertical, de derecha a izquierda */
+    text-orientation: upright; /* Ajusta la orientación del texto */
+    font-weight: bold;
+    font-size: 1vw;
+}
+
+#variable-container:hover {
+    background-color: #88B14B;
+    cursor: default;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+#box {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 1vw;
+    width: 240px;
+    height: 100%;
+    border: 1px solid #888;
+    background-color: #ccc;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#box:hover {
+    background-color: #000;
+    color: #FFF;
+    cursor: default;
 }

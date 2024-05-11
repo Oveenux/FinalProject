@@ -2,8 +2,11 @@
 var menuAbierto = false;
 var jsonData;
 var graficos = [];
+var estadisticos = [];
+var unidades = ['T','V','C']
 var indiceGraficoActual;
-
+var stat = 0;
+var iteracion = 0;
 
 function toggleMenu() {
     var menu = document.getElementById("menuDesplegable");
@@ -225,33 +228,89 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
     });
 }
 
+function calcularPromedio(datos) {
+    // Inicializar la suma
+    var sum = 0;
+
+    // Sumar los valores
+    for (var i = 0; i < datos.length; i++) {
+        sum += datos[i];
+    }
+
+    // Calcular el promedio
+    var average = sum / datos.length;
+
+    return average;
+}
+
+function calcularDesviacionEstandar(datos, media) {
+    var n = datos.length;
+
+    // Calcular la suma de las diferencias al cuadrado
+    var sumatoriaDiferenciasCuadrado = datos.reduce(function(acumulador, valor) {
+        return acumulador + Math.pow(valor - media, 2);
+    }, 0);
+
+    // Calcular la desviación estándar
+    var desviacionEstandar = Math.sqrt(sumatoriaDiferenciasCuadrado / (n-1));
+
+    return desviacionEstandar;
+}
+
 function crearGrafica(data, estampa, key) {
 
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
     canvas.classList.add('grafico-canvas');
 
+    var promedio;
+    var desviacion;
+    var color;
+
     titulo = key;
     if (titulo === 'TEMP') {
         titulo = 'Temperatura exterior';
         createChart(ctx, titulo, estampa, data.TEMP, '#55836760', '#558367','Grados Celsius (°C)');
+        promedio = calcularPromedio(data.TEMP);
+        desviacion = calcularDesviacionEstandar(data.TEMP, promedio)
+        color = '#55836785';
     } else if (titulo === 'TEMPNEV') {
         titulo = 'Temperatura nevera';
         createChart(ctx, titulo, estampa, data.TEMPNEV, '#7BA0C060', '#7BA0C0','Grados Celsius (°C)');
+        promedio = calcularPromedio(data.TEMPNEV);
+        desviacion = calcularDesviacionEstandar(data.TEMPNEV, promedio)
+        color = '#7BA0C085';
     } else if (titulo === 'HUM') {
         titulo = 'Humedad exterior';
         createChart(ctx, titulo, estampa, data.HUM,'#2667FF60', '#2667FF', 'Porcentaje (%)');
+        promedio = calcularPromedio(data.HUM);
+        desviacion = calcularDesviacionEstandar(data.HUM, promedio)
+        color = '#2667FF85';
     } else if (titulo === 'HUMNEV') {
         titulo = 'Humedad nevera';
         createChart(ctx, titulo, estampa, data.HUMNEV,'#88888860', '#888888', 'Porcentaje (%)');
+        promedio = calcularPromedio(data.HUMNEV);
+        desviacion = calcularDesviacionEstandar(data.HUMNEV, promedio)
+        color = '#9B9B9B85';
     } else if (titulo === 'LUX') {
         titulo = 'Luminosidad';
         createChart(ctx, titulo, estampa, data.LUX, '#FAA50060', '#FAA500', 'Lux (lx)');
+        promedio = calcularPromedio(data.LUX);
+        desviacion = calcularDesviacionEstandar(data.LUX, promedio)
+        color = '#FAA50085';
     } else if (titulo === 'VV') {
         titulo = 'Velocidad del viento';
         createChart(ctx, titulo, estampa, data.VV, '#6050A860', '#6050A8','Velocidad (m/s)');
+        promedio = calcularPromedio(data.VV);
+        desviacion = calcularDesviacionEstandar(data.VV, promedio)
+        color = '#6050A885';
     } 
-    return canvas;
+    if (promedio !== undefined && promedio !== null) {
+        // Si 'valor' está definido, entonces usar 'toFixed'
+        promedio = promedio.toFixed(2);
+        desviacion = desviacion.toFixed(2);
+      }
+    return [canvas, titulo, color, promedio, desviacion];
 }
 
 // Función para convertir JSON a CSV
@@ -311,6 +370,7 @@ function mostrarGrafico() {
     // Agregar el gráfico actual al contenedor
     contenedor.appendChild(graficos[indiceGraficoActual]);
     actualizarMensajeGraficas();
+    actualizarMarcadores(estadisticos);
 }
 
 function actualizarMensajeGraficas() {
@@ -326,6 +386,53 @@ function mostrarBotonesDes() {
     mensajeGraficas.style.display = 'block';
 }
 
+function mostrarCuadro() {
+    var boxes = document.querySelectorAll("#box");
+    boxes.forEach(function(box) {
+        box.classList.remove("hidden");
+        box.classList.add("flex");
+    });
+    var variableContainers = document.querySelectorAll("#variable-container");
+    variableContainers.forEach(function(container) {
+        container.classList.remove("hidden");
+        container.classList.add("flex");
+    });
+}
+
+function ocultarCuadro() {
+    var boxes = document.querySelectorAll("#box");
+    boxes.forEach(function(box) {
+        box.classList.remove("flex");
+        box.classList.add("hidden");
+        var variableContainers = document.querySelectorAll("#variable-container");
+    variableContainers.forEach(function(container) {
+        container.classList.remove("flex");
+        container.classList.add("hidden");
+    });
+    });
+}
+
+function actualizarMarcadores(valores) {
+
+    // Calcular los índices de los valores a mostrar
+    var primerIndice = indiceGraficoActual * 4;
+
+    var variableContainer = document.getElementById('variable-container');
+    // Definir el texto en una variable
+    var nuevoTexto = valores[primerIndice]
+    // Cambiar el contenido del div dinámicamente usando la variable
+    variableContainer.innerHTML = '<div>' + nuevoTexto + '</div>';
+
+    variableContainer.style.backgroundColor = valores[primerIndice+1];
+
+    var spans = document.querySelectorAll('.boxes-container .value');
+
+    // Asignar valores a los spans específicos
+    for (var i = 0; i < 2; i++) {
+        spans[i].textContent = valores[primerIndice + 2 + i] || ""; // Manejamos el caso de que no haya un valor en el índice
+    }
+    
+}
 
 document.getElementById("myForm").addEventListener("submit", function(event){
     event.preventDefault(); // Evitar la acción predeterminada de envío del formulario
@@ -336,7 +443,8 @@ document.getElementById("myForm").addEventListener("submit", function(event){
     var contenedor = document.getElementById('chartsContainer');
 
     graficos.length = 0;
-    indiceGraficoActual = 0
+    estadisticos.length = 0;
+    indiceGraficoActual = 0;
     contenedor.innerHTML = '';
 
     checkboxes.forEach(function(checkbox) {
@@ -371,6 +479,8 @@ document.getElementById("myForm").addEventListener("submit", function(event){
     })
     .then(data => {
 
+        iteracion++;
+
         if ('TIMESTAMP' in data) {
             // Guardar el valor del campo "TIMESTAMP"
             const timestamp = data.TIMESTAMP;
@@ -387,12 +497,18 @@ document.getElementById("myForm").addEventListener("submit", function(event){
         }
         
         for (var key in data) {
-            var canvas = crearGrafica(data, data.TIMESTAMP, key);
-            graficos.push(canvas)
+            var informacion = crearGrafica(data, data.TIMESTAMP, key);
+            var canvas = informacion[0];
+            graficos.push(canvas);
+            estadisticos.push(informacion[1], informacion[2], informacion[3], informacion[4]);
         }
 
         contenedor.appendChild(graficos[0]);
         mostrarBotonesDes();
+        if (stat == 0) {
+            mostrarCuadro();
+        }
+        actualizarMarcadores(estadisticos);
         actualizarMensajeGraficas();
 
         for (var i = 0; i < data.TIMESTAMP.length; i++) {
@@ -438,6 +554,15 @@ new Vue({
     methods: {
       toggleSwitch() {
         this.isOn = !this.isOn;
+        if (this.isOn) {
+            ocultarCuadro(); // Llama a la función mostrarCuadro si el switch está encendido
+            stat = 1;
+        } else {
+            stat = 0;
+            if (iteracion != 0) {
+                mostrarCuadro();
+            }
+        }
       }
     }
 });

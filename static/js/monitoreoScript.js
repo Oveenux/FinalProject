@@ -142,8 +142,6 @@ function createChart2V(ctx, label1, label2, borderColor1, borderColor2, y_unit) 
     });
 }
 
-
-
 function eliminarUltimoDato(chart,limiteLongitud){
     if (chart.data.labels.length > limiteLongitud) {
         chart.data.labels.shift();
