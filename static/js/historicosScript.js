@@ -534,5 +534,6 @@ const contenedor = document.getElementById('chartsContainer');
 // Agregar controladores de eventos de clic a los botones
 botonAnterior.addEventListener('click', mostrarGraficoAnterior);
 botonSiguiente.addEventListener('click', mostrarGraficoSiguiente);
+// Controladores de eventos para cambio de graficos con flechas
 document.addEventListener('keydown', flechaIzquierda);
 document.addEventListener('keydown', flechaDerecha);
