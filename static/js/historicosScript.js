@@ -2,8 +2,7 @@
 var menuAbierto = false;
 var jsonData;
 var graficos = [];
-var estadisticos = [];
-var unidades = ['T','V','C']
+var cuadroInfo = [];
 var indiceGraficoActual;
 var stat = 0;
 var iteracion = 0;
@@ -228,89 +227,49 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
     });
 }
 
-function calcularPromedio(datos) {
-    // Inicializar la suma
-    var sum = 0;
-
-    // Sumar los valores
-    for (var i = 0; i < datos.length; i++) {
-        sum += datos[i];
-    }
-
-    // Calcular el promedio
-    var average = sum / datos.length;
-
-    return average;
-}
-
-function calcularDesviacionEstandar(datos, media) {
-    var n = datos.length;
-
-    // Calcular la suma de las diferencias al cuadrado
-    var sumatoriaDiferenciasCuadrado = datos.reduce(function(acumulador, valor) {
-        return acumulador + Math.pow(valor - media, 2);
-    }, 0);
-
-    // Calcular la desviación estándar
-    var desviacionEstandar = Math.sqrt(sumatoriaDiferenciasCuadrado / (n-1));
-
-    return desviacionEstandar;
-}
-
 function crearGrafica(data, estampa, key) {
 
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
     canvas.classList.add('grafico-canvas');
 
-    var promedio;
-    var desviacion;
     var color;
+    var imagV;
 
     titulo = key;
     if (titulo === 'TEMP') {
         titulo = 'Temperatura exterior';
         createChart(ctx, titulo, estampa, data.TEMP, '#55836760', '#558367','Grados Celsius (°C)');
-        promedio = calcularPromedio(data.TEMP);
-        desviacion = calcularDesviacionEstandar(data.TEMP, promedio)
         color = '#55836785';
+        imagV = 'temp.png';
     } else if (titulo === 'TEMPNEV') {
         titulo = 'Temperatura nevera';
         createChart(ctx, titulo, estampa, data.TEMPNEV, '#7BA0C060', '#7BA0C0','Grados Celsius (°C)');
-        promedio = calcularPromedio(data.TEMPNEV);
-        desviacion = calcularDesviacionEstandar(data.TEMPNEV, promedio)
         color = '#7BA0C085';
+        imagV = 'temp.png';
     } else if (titulo === 'HUM') {
         titulo = 'Humedad exterior';
         createChart(ctx, titulo, estampa, data.HUM,'#2667FF60', '#2667FF', 'Porcentaje (%)');
-        promedio = calcularPromedio(data.HUM);
-        desviacion = calcularDesviacionEstandar(data.HUM, promedio)
         color = '#2667FF85';
+        imagV = 'hum.png';
     } else if (titulo === 'HUMNEV') {
         titulo = 'Humedad nevera';
         createChart(ctx, titulo, estampa, data.HUMNEV,'#88888860', '#888888', 'Porcentaje (%)');
-        promedio = calcularPromedio(data.HUMNEV);
-        desviacion = calcularDesviacionEstandar(data.HUMNEV, promedio)
         color = '#9B9B9B85';
+        imagV = 'hum.png';
     } else if (titulo === 'LUX') {
         titulo = 'Luminosidad';
         createChart(ctx, titulo, estampa, data.LUX, '#FAA50060', '#FAA500', 'Lux (lx)');
-        promedio = calcularPromedio(data.LUX);
-        desviacion = calcularDesviacionEstandar(data.LUX, promedio)
+        imagV = 'sun.png';
         color = '#FAA50085';
     } else if (titulo === 'VV') {
         titulo = 'Velocidad del viento';
         createChart(ctx, titulo, estampa, data.VV, '#6050A860', '#6050A8','Velocidad (m/s)');
-        promedio = calcularPromedio(data.VV);
-        desviacion = calcularDesviacionEstandar(data.VV, promedio)
         color = '#6050A885';
+        imagV = 'viento.png';
     } 
-    if (promedio !== undefined && promedio !== null) {
-        // Si 'valor' está definido, entonces usar 'toFixed'
-        promedio = promedio.toFixed(2);
-        desviacion = desviacion.toFixed(2);
-      }
-    return [canvas, titulo, color, promedio, desviacion];
+
+    return [canvas, color, imagV];
 }
 
 // Función para convertir JSON a CSV
@@ -347,6 +306,17 @@ function downloadCSV() {
     downloadLink.click();
 }
 
+// Función para mostrar el gráfico actual
+function mostrarGrafico() {
+    // Eliminar todos los gráficos del contenedor
+    contenedor.innerHTML = '';
+
+    // Agregar el gráfico actual al contenedor
+    contenedor.appendChild(graficos[indiceGraficoActual]);
+    actualizarMensajeGraficas();
+    actualizarMarcadores(cuadroInfo);
+}
+
 function mostrarGraficoAnterior() {
     if (indiceGraficoActual > 0) {
         indiceGraficoActual--;
@@ -362,15 +332,17 @@ function mostrarGraficoSiguiente() {
     }
 }
 
-// Función para mostrar el gráfico actual
-function mostrarGrafico() {
-    // Eliminar todos los gráficos del contenedor
-    contenedor.innerHTML = '';
+function flechaIzquierda(event) {
+    // Si se presiona la flecha izquierda o la flecha arriba
+    if (event.keyCode === 37 || event.keyCode === 38) {
+        mostrarGraficoAnterior();
+    }
+}
 
-    // Agregar el gráfico actual al contenedor
-    contenedor.appendChild(graficos[indiceGraficoActual]);
-    actualizarMensajeGraficas();
-    actualizarMarcadores(estadisticos);
+function flechaDerecha(event) {
+    if (event.keyCode === 39 || event.keyCode === 40) {
+        mostrarGraficoSiguiente();
+    }
 }
 
 function actualizarMensajeGraficas() {
@@ -387,11 +359,6 @@ function mostrarBotonesDes() {
 }
 
 function mostrarCuadro() {
-    var boxes = document.querySelectorAll("#box");
-    boxes.forEach(function(box) {
-        box.classList.remove("hidden");
-        box.classList.add("flex");
-    });
     var variableContainers = document.querySelectorAll("#variable-container");
     variableContainers.forEach(function(container) {
         container.classList.remove("hidden");
@@ -400,37 +367,29 @@ function mostrarCuadro() {
 }
 
 function ocultarCuadro() {
-    var boxes = document.querySelectorAll("#box");
-    boxes.forEach(function(box) {
-        box.classList.remove("flex");
-        box.classList.add("hidden");
-        var variableContainers = document.querySelectorAll("#variable-container");
+    var variableContainers = document.querySelectorAll("#variable-container");
     variableContainers.forEach(function(container) {
         container.classList.remove("flex");
         container.classList.add("hidden");
-    });
     });
 }
 
 function actualizarMarcadores(valores) {
 
     // Calcular los índices de los valores a mostrar
-    var primerIndice = indiceGraficoActual * 4;
+    var primerIndice = indiceGraficoActual * 2;
 
     var variableContainer = document.getElementById('variable-container');
-    // Definir el texto en una variable
-    var nuevoTexto = valores[primerIndice]
-    // Cambiar el contenido del div dinámicamente usando la variable
-    variableContainer.innerHTML = '<div>' + nuevoTexto + '</div>';
 
-    variableContainer.style.backgroundColor = valores[primerIndice+1];
+    variableContainer.style.backgroundColor = valores[primerIndice];
 
-    var spans = document.querySelectorAll('.boxes-container .value');
+    // Crea un elemento de imagen
+    const img = document.createElement('img');
+    const imageUrl = '../static/images/icons/' + valores[primerIndice+1];
+    img.src = imageUrl;
 
-    // Asignar valores a los spans específicos
-    for (var i = 0; i < 2; i++) {
-        spans[i].textContent = valores[primerIndice + 2 + i] || ""; // Manejamos el caso de que no haya un valor en el índice
-    }
+    variableContainer.innerHTML = '';
+    variableContainer.appendChild(img);
     
 }
 
@@ -441,11 +400,12 @@ document.getElementById("myForm").addEventListener("submit", function(event){
     var checkboxesMarcados = [];
 
     var contenedor = document.getElementById('chartsContainer');
-
+    var imageContainer = document.getElementById('variable-container');
     graficos.length = 0;
-    estadisticos.length = 0;
+    cuadroInfo.length = 0;
     indiceGraficoActual = 0;
     contenedor.innerHTML = '';
+    imageContainer.innerHTML = '';
 
     checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
@@ -500,7 +460,7 @@ document.getElementById("myForm").addEventListener("submit", function(event){
             var informacion = crearGrafica(data, data.TIMESTAMP, key);
             var canvas = informacion[0];
             graficos.push(canvas);
-            estadisticos.push(informacion[1], informacion[2], informacion[3], informacion[4]);
+            cuadroInfo.push(informacion[1], informacion[2]);
         }
 
         contenedor.appendChild(graficos[0]);
@@ -508,7 +468,7 @@ document.getElementById("myForm").addEventListener("submit", function(event){
         if (stat == 0) {
             mostrarCuadro();
         }
-        actualizarMarcadores(estadisticos);
+        actualizarMarcadores(cuadroInfo);
         actualizarMensajeGraficas();
 
         for (var i = 0; i < data.TIMESTAMP.length; i++) {
@@ -574,3 +534,5 @@ const contenedor = document.getElementById('chartsContainer');
 // Agregar controladores de eventos de clic a los botones
 botonAnterior.addEventListener('click', mostrarGraficoAnterior);
 botonSiguiente.addEventListener('click', mostrarGraficoSiguiente);
+document.addEventListener('keydown', flechaIzquierda);
+document.addEventListener('keydown', flechaDerecha);

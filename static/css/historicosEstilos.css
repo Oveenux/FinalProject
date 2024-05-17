@@ -277,8 +277,8 @@ button[type="submit"]:hover {
     padding: 4px 20px;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 0px;
     font-size: 15px;
 }
 
@@ -398,41 +398,6 @@ button[type="submit"]:hover {
     display: none;
 }
 
-.info-container {
-    display: flex;
-    justify-content: center;
-    width: 400px;
-    height: 65%;
-    margin: 0;
-}
-
-.boxes-container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.boxes-container .value {
-    font-size: 3vw;
-}
-
-#variable-container {
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    width: 150px;
-    margin-top: 10px;
-    border: 1px solid #888;
-    background-color: #ccc;
-    border-radius: 10px;
-    margin-right: 10px;
-    writing-mode: vertical-rl; /* Establece la escritura vertical, de derecha a izquierda */
-    text-orientation: upright; /* Ajusta la orientación del texto */
-    font-weight: bold;
-    font-size: 1vw;
-}
-
 .flex {
     display: flex;
     flex-direction: column;
@@ -440,20 +405,27 @@ button[type="submit"]:hover {
     align-items: center;
     gap: 5px;
 }
-#box {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: 1vw;
-    width: 240px;
-    height: 100%;
+
+.info-container {
+    display: flex;
+    justify-content: center;
+    width: 24vw;
+    height: 50%;
+    margin: 0;
+}
+
+#variable-container {
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 450px;
     border: 1px solid #888;
     background-color: #ccc;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
+    padding: 20px;
 }
 
-#box:hover {
-    background-color: #000;
-    color: #FFF;
-    cursor: default;
+#variable-container img {
+    max-width: 70%;
+    height: auto;
 }
