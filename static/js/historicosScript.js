@@ -202,7 +202,7 @@ function createChart(ctx, label, estampa, variable ,backgroundColor, borderColor
                         },
                         color: 'black',
                     },
-                    beginAtZero: true
+                    beginAtZero: false
                 }
             },
             layout: {
