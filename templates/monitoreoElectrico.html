@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monitoreo Eléctrico</title>
+        <link rel="icon" href='../static/images/logo/logoNF.png' type="image/png">
+        <link rel="stylesheet" href="../static/css/monitoreoElectrico.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+
+    <body>
+
+        <img class="logo" src="../static/images/logo/logoNF.png" alt="Logo">
+
+        <div class="navbar">
+            <div class="navbarC">
+                <button onclick="window.location.href='../monitoreo'">
+                    <img src="../static/images/icons/graphB.png" alt="Graph" class="icon">Monitoreo Ambiental
+                </button>
+                <button onclick="window.location.href='../historicos'">
+                    <img src="../static/images/icons/lupaB.png" alt="Lupa" class="icon">Históricos
+                </button>
+            </div>
+        </div>
+
+        <a href="../">
+            <h1>EcoMed<span class="letra-i">i</span>x</h1>
+        </a>
+
+        <h2>Variables Eléctricas</h2>
+
+        <div class = "container">
+
+            <div class="infoGrid-container-2">
+                <div class="boxes box1">
+                    <div>Voltaje A</div> 
+                    <div class="value"></div> 
+                </div>
+                <div class="boxes box1">
+                    <div>Corriente A</div>
+                    <div class="value"></div>
+                </div>
+                <div class="boxes box1">
+                    <div>Potencia A</div>
+                    <div class="value"></div>
+                </div>
+                <div class="boxes box2">
+                    <div>Voltaje B</div>
+                    <div class="value"></div>
+                </div>
+                <div class="boxes box2">
+                    <div>Corriente B</div>
+                    <div class="value"></div>
+                </div>
+                <div class="boxes box2">
+                    <div>Potencia B</div>
+                    <div class="value"></div>
+                </div>
+                <div class="boxes box3">
+                    <div>Voltaje C</div>
+                    <div class="value"></div>
+                </div>
+                <div class="boxes box3">
+                    <div>Corriente C</div>
+                    <div class="value"></div>
+                </div>
+                <div class="boxes box3">
+                    <div>Potencia C</div>
+                    <div class="value"></div>
+                </div>
+            </div>
+
+            <div class="grid-container">
+                <div class="chart-container">
+                    <canvas id="voltajeChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="corrienteChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="potenciaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    
+        <script src="../static/js/mElectricoScript.js"></script>
+
+    </body>
+</html>

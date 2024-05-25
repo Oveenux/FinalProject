@@ -58,6 +58,44 @@ def get_data():
     except Exception as e:
         return str(e)
     
+def get_ElectricalData():
+    try:
+        conn = conectar()
+        cursor = conn.cursor(dictionary=True)
+        
+        # Consulta para obtener los últimos 10 datos
+        sql = "SELECT TIMESTAMP, VA, VB, VC, IA, IB, IC, PA, PB, PC FROM datos ORDER BY NUM DESC LIMIT 10"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+
+        timestamps = [row['TIMESTAMP'] for row in reversed(result)]
+
+        VAi = [row['VA'] for row in reversed(result)]
+        IAi = [row['IA'] for row in reversed(result)]
+        PAi = [row['PA'] for row in reversed(result)]
+
+        VBi = [row['VB'] for row in reversed(result)]
+        IBi = [row['IB'] for row in reversed(result)]
+        PBi = [row['PB'] for row in reversed(result)]
+
+        VCi = [row['VC'] for row in reversed(result)]
+        ICi = [row['IC'] for row in reversed(result)]
+        PCi = [row['PC'] for row in reversed(result)]
+
+        global ultimo_almacenado
+        ultimo_almacenado = timestamps[-1]
+
+        cursor.close()
+        conn.close()
+      
+        return jsonify({"labels": timestamps, 
+                        "VAi": VAi, "IAi": IAi, "PAi": PAi,
+                        "VBi": VBi, "IBi": IBi, "PBi": PBi,
+                        "VCi": VCi, "ICi": ICi, "PCi": PCi})
+        
+    except Exception as e:
+        return str(e)
+    
 def buscar_ultimoDato():
     conn = conectar()
     cursor = conn.cursor()
@@ -70,7 +108,7 @@ def buscar_ultimoDato():
     conn.close()
     return ultimoDato_DB
 
-def actualizar_ultimoDato():
+def actualizar_ultimoDato(datos):
 
     global ultimo_almacenado
     
@@ -82,7 +120,7 @@ def actualizar_ultimoDato():
     conn = conectar()
     cursor = conn.cursor()
     # Consulta para obtener los últimos 10 datos
-    sql = "SELECT TIMESTAMP, TEMP, TEMPNEV, HUM, HUMNEV, LUX, VV FROM datos ORDER BY NUM DESC LIMIT 1"
+    sql = f"SELECT TIMESTAMP, {datos} FROM datos ORDER BY NUM DESC LIMIT 1"
     cursor.execute(sql)
     ultimoFila = cursor.fetchone()
     timestamp = ultimoFila[0]

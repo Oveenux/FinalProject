@@ -14,8 +14,12 @@ def index():
 def index2():
     return render_template('monitoreoWP.html')
 
-@app.route('/historicos')
+@app.route('/monitoreoElectrico')
 def index3():
+    return render_template('monitoreoElectrico.html')
+
+@app.route('/historicos')
+def index4():
     return render_template('historicosWP.html')
 
 @app.route('/get_data', methods = ['POST'])
@@ -26,7 +30,17 @@ def get_data():
 @app.route('/stream', methods = ['POST'])
 # Route for updating of charts
 def stream():
-    return func.actualizar_ultimoDato()
+    return func.actualizar_ultimoDato(datos = "TEMP, TEMPNEV, HUM, HUMNEV, LUX, VV")
+
+@app.route('/get_ElectricalData', methods = ['POST'])
+# Route for initial charts data
+def get_ElectricalData():
+    return func.get_ElectricalData()
+
+# @app.route('/stream_ElectricalData', methods = ['POST'])
+# # Route for updating of charts
+# def stream_ElectricalData():
+#     return func.actualizar_ultimoDato(datos = "V-A, V-B, V-C, I-A, I-B, I-C, P-A, P-B, P-C")
 
 @app.route('/search_data', methods=['POST'])
 # Route for historical data search
