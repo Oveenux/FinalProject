@@ -37,10 +37,10 @@ def stream():
 def get_ElectricalData():
     return func.get_ElectricalData()
 
-# @app.route('/stream_ElectricalData', methods = ['POST'])
-# # Route for updating of charts
-# def stream_ElectricalData():
-#     return func.actualizar_ultimoDato(datos = "V-A, V-B, V-C, I-A, I-B, I-C, P-A, P-B, P-C")
+@app.route('/stream_ElectricalData', methods = ['POST'])
+# Route for updating of charts
+def stream_ElectricalData():
+    return func.actualizar_ultimoDato(datos = "VA, VB, VC, IA, IB, IC, PA, PB, PC")
 
 @app.route('/search_data', methods=['POST'])
 # Route for historical data search

@@ -22,6 +22,7 @@ body {
     display: flex;
     justify-content: end;
 }
+
 .navbarC {
     width: 40%;
     height: auto;
@@ -106,7 +107,7 @@ h2:hover {
 }
 
 .infoGrid-container-2 .value {
-    font-size: 3vw;
+    font-size: 2vw;
 }
 
 .boxes{
@@ -118,7 +119,7 @@ h2:hover {
     align-items: center;
     height: 98%;
     border: 1px solid #ccc;
-    gap: 5px;
+    gap: 1px;
     font-size: 1vw;
 }
 

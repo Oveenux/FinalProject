@@ -14,19 +14,24 @@ body {
     height: auto; /* Altura automática para mantener la proporción */
 }
 /* Estilos para la barra superior */
-
 .navbar {
-    height: cover;
+    height: auto;
     color: #fff; /* Texto blanco */
     text-align: right;
-    width: 100%;
+    display: flex;
+    justify-content: end;
 }
 
+.navbarC {
+    width: 40%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+}
 /* Estilos para el botón */
-.navbar button {
+.navbarC button {
     text-align: right;
     display: flex;
-    margin-right: 30px;
     margin-left: auto;
     background-color: #000; /* Color de fondo */
     color: white; /* Color del texto */
@@ -36,8 +41,8 @@ body {
     cursor: pointer; /* Cursor al pasar sobre el botón */
     align-items: center;
     font-size: 15px;
+    margin: 0 0 0 10px; /* Añadir espacio entre los botones */
 }
-
 
 .navbar button .icon {
     /* Estilos específicos para el icono */

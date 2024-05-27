@@ -148,6 +148,9 @@ function getDataFromServer(callback) {
                 humedadNevInicial = response.VBi;
                 luminosidadInicial = response.IBi;
                 vientoInicial = response.PBi;
+                vcInicial = response.VCi;
+                icInicial = response.ICi;
+                pcInicial = response.PCi;
 
                 // Itera sobre cada cadena en "labels" y obtiene el timestamp
                 response.labels.forEach(label => {
@@ -171,7 +174,7 @@ function getDataFromServer(callback) {
 }
 
 function fetchDataAndDrawChart() {
-    fetch('/stream', {method: "POST"})
+    fetch('/stream_ElectricalData', {method: "POST"})
 
         .then(response => {
             if (!response.ok) {
@@ -187,6 +190,7 @@ function fetchDataAndDrawChart() {
             var estampa = data.label.split(" ");
             var timestamp = estampa[4];
             var variables = data.variables;
+            console.log(variables)
             var tempExt = parseFloat(variables[0]);
             var tempNev = parseFloat(variables[1]);
             var humedadExt = parseFloat(variables[2]);
@@ -212,7 +216,8 @@ document.addEventListener('DOMContentLoaded', function () {
         graficaInicial3V(potenciaChart, tmstamps, humedadExtInicial, humedadNevInicial, 10);
 
         var valores = [tempExtInicial[9], tempNevInicial[9], humedadExtInicial[9], 
-                        humedadNevInicial[9], luminosidadInicial[9], vientoInicial[9]]; // Valores de las variables
+                        humedadNevInicial[9], luminosidadInicial[9], vientoInicial[9],
+                        vcInicial[9], icInicial[9], pcInicial[9]]; // Valores de las variables
         
         actualizarMarcadores(valores, unidades);
         
