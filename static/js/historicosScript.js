@@ -322,7 +322,7 @@ function crearGrafica(data, estampa, key) {
         imagV = 'energy.png';
         createChart(ctx, titulo, estampa, data.PA, '#6050A860', '#6050A8','Vatios (W)');
     } else if (titulo === 'PB'){
-        titulo = 'Potencia C';
+        titulo = 'Potencia B';
         color = '#6050A885'
         imagV = 'energy.png';
         createChart(ctx, titulo, estampa, data.PB, '#6050A860', '#6050A8','Vatios (W)');
