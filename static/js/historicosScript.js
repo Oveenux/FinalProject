@@ -505,6 +505,55 @@ document.getElementById("myForm").addEventListener("submit", function(event){
 
         iteracion++;
 
+
+        if ('VA' in data) {
+            // Guardar el valor del campo "TIMESTAMP"
+            const VA = data.VA;
+            // Eliminar el campo "TIMESTAMP" del objeto
+            delete data.VA;
+            // Agregar el campo "TIMESTAMP" al final del objeto
+            data.VA = VA;
+        }
+        if ('VB' in data) {
+            const VB = data.VB;
+            delete data.VB;
+            data.VB = VB;
+        }
+        if ('VC' in data) {
+            const VC = data.VC;
+            delete data.VC;
+            data.VC = VC;
+        }
+        if ('IA' in data) {
+            const IA = data.IA;
+            delete data.IA;
+            data.IA = IA;
+        }
+        if ('IB' in data) {
+            const IB = data.IB;
+            delete data.IB;
+            data.IB = IB;
+        }
+        if ('IC' in data) {
+            const IC = data.IC;
+            delete data.IC;
+            data.IC = IC;
+        }
+        if ('PA' in data) {
+            const PA = data.PA;
+            delete data.PA;
+            data.PA = PA;
+        }
+        if ('PB' in data) {
+            const PB = data.PB;
+            delete data.PB;
+            data.PB = PB;
+        }
+        if ('PC' in data) {
+            const PC = data.PC;
+            delete data.PC;
+            data.PC = PC;
+        }
         if ('TIMESTAMP' in data) {
             // Guardar el valor del campo "TIMESTAMP"
             const timestamp = data.TIMESTAMP;
@@ -513,7 +562,6 @@ document.getElementById("myForm").addEventListener("submit", function(event){
             // Agregar el campo "TIMESTAMP" al final del objeto
             data.TIMESTAMP = timestamp;
         }
-        
 
         if (Object.keys(data).length === 0) {
             console.log('No hay datos disponibles');
