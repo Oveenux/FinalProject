@@ -1,9 +1,12 @@
-var tempExtInicial = [];
-var tempNevInicial = [];
-var humedadExtInicial = [];
-var humedadNevInicial = [];
-var luminosidadInicial = [];
-var vientoInicial = [];
+var vaInicial = [];
+var iaInicial = [];
+var paInicial = [];
+var vbInicial = [];
+var ibInicial = [];
+var pbInicial = [];
+var vcInicial = [];
+var icInicial = [];
+var pcInicial = [];
 var tmstamps = [];
 var unidades = ["V", "A", "W", "V", "A", "W", "V", "A", "W"]; // Unidades correspondientes
 
@@ -31,7 +34,7 @@ function createChart3V(ctx, label1, label2, label3, borderColor1, borderColor2, 
                 backgroundColor: borderColor2, 
                 borderWidth: 2,
                 fill: false,
-                pointRadius: 3,
+                pointRadius: 6,
                 pointStyle: 'triangle'
 
             },
@@ -43,7 +46,7 @@ function createChart3V(ctx, label1, label2, label3, borderColor1, borderColor2, 
                 borderWidth: 2,
                 fill: false,
                 pointRadius: 6,
-                pointStyle: 'triangle'
+                pointStyle: 'crossRot'
 
             }]
         },
@@ -69,7 +72,7 @@ function createChart3V(ctx, label1, label2, label3, borderColor1, borderColor2, 
                     ticks: {
                         color: 'black' // Color del texto de las etiquetas del eje y
                     },
-                    beginAtZero: true
+                    beginAtZero: false
                 }
             },
             layout: {
@@ -107,11 +110,11 @@ function eliminarUltimoDato3V(chart,limiteLongitud){
 
 
 
-function graficaInicial3V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, limiteLongitud) {
+function graficaInicial3V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, nuevaVariable3,limiteLongitud) {
     chart.data.labels.push(...nuevoTiempo);
     chart.data.datasets[0].data.push(...nuevaVariable1);
     chart.data.datasets[1].data.push(...nuevaVariable2);
-    chart.data.datasets[2].data.push(...nuevaVariable2);
+    chart.data.datasets[2].data.push(...nuevaVariable3);
     eliminarUltimoDato3V(chart,limiteLongitud)
 }
 
@@ -142,12 +145,12 @@ function getDataFromServer(callback) {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 var response = JSON.parse(xhr.responseText);
-                tempExtInicial =  response.VAi;
-                tempNevInicial = response.IAi;
-                humedadExtInicial = response.PAi;
-                humedadNevInicial = response.VBi;
-                luminosidadInicial = response.IBi;
-                vientoInicial = response.PBi;
+                vaInicial = response.VAi;
+                iaInicial = response.IAi;
+                paInicial = response.PAi;
+                vbInicial = response.VBi;
+                ibInicial = response.IBi;
+                pbInicial = response.PBi;
                 vcInicial = response.VCi;
                 icInicial = response.ICi;
                 pcInicial = response.PCi;
@@ -190,19 +193,21 @@ function fetchDataAndDrawChart() {
             var estampa = data.label.split(" ");
             var timestamp = estampa[4];
             var variables = data.variables;
-            console.log(variables)
-            var tempExt = parseFloat(variables[0]);
-            var tempNev = parseFloat(variables[1]);
-            var humedadExt = parseFloat(variables[2]);
-            var humedadNev = parseFloat(variables[3]);
-            var luminosidad = parseFloat(variables[4]);
-            var viento = parseFloat(variables[5]);
+            var VA = parseFloat(variables[0]);
+            var VB = parseFloat(variables[1]);
+            var VC = parseFloat(variables[2]);
+            var IA = parseFloat(variables[3]);
+            var IB = parseFloat(variables[4]);
+            var IC = parseFloat(variables[5]);
+            var PA = parseFloat(variables[6]);
+            var PB = parseFloat(variables[7]);
+            var PC = parseFloat(variables[8]);
 
             actualizarMarcadores(variables, unidades)
 
-            actualizarDatosGrafica3V(voltajeChart, timestamp, tempExt, tempNev, 10);
-            actualizarDatosGrafica3V(corrienteChart, timestamp, humedadExt, humedadNev, 10);
-
+            actualizarDatosGrafica3V(voltajeChart, timestamp, VA, VB, VC, 10);
+            actualizarDatosGrafica3V(corrienteChart, timestamp, IA, IB, IC, 10);
+            actualizarDatosGrafica3V(potenciaChart, timestamp, PA, PB, PC, 10);
         })
         .catch(error => console.error('Error fetching data:', error));
 }
@@ -211,12 +216,12 @@ function fetchDataAndDrawChart() {
 document.addEventListener('DOMContentLoaded', function () {
     getDataFromServer(function() {
         
-        graficaInicial3V(voltajeChart, tmstamps, tempExtInicial, tempNevInicial, 10);
-        graficaInicial3V(corrienteChart, tmstamps, humedadExtInicial, humedadNevInicial, 10);
-        graficaInicial3V(potenciaChart, tmstamps, humedadExtInicial, humedadNevInicial, 10);
+        graficaInicial3V(voltajeChart, tmstamps, vaInicial, vbInicial, vcInicial, 10);
+        graficaInicial3V(corrienteChart, tmstamps, iaInicial, ibInicial, icInicial, 10);
+        graficaInicial3V(potenciaChart, tmstamps, paInicial, pbInicial, pcInicial, 10);
 
-        var valores = [tempExtInicial[9], tempNevInicial[9], humedadExtInicial[9], 
-                        humedadNevInicial[9], luminosidadInicial[9], vientoInicial[9],
+        var valores = [vaInicial[9], iaInicial[9], paInicial[9], 
+                        vbInicial[9], ibInicial[9], pbInicial[9],
                         vcInicial[9], icInicial[9], pcInicial[9]]; // Valores de las variables
         
         actualizarMarcadores(valores, unidades);
@@ -225,13 +230,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 var ctx1 = document.getElementById('voltajeChart').getContext('2d');
-var voltajeChart = createChart3V(ctx1, 'Voltaje A', 'Voltaje B', "Voltaje C", "#FF0000",'#558367', '#7BA0C0', 'Voltios (V)');
+var voltajeChart = createChart3V(ctx1, 'Voltaje A', 'Voltaje B', "Voltaje C", "#2667FF",'#FAA500', '#6050A8', 'Voltios (V)');
 
 var ctx2 = document.getElementById('corrienteChart').getContext('2d');
-var corrienteChart = createChart3V(ctx2, 'Corriente A', 'Corriente B', "Corriente C", "#FF0000", '#2667FF', '#888888', 'Amperios (A)');
+var corrienteChart = createChart3V(ctx2, 'Corriente A', 'Corriente B', "Corriente C", "#2667FF", '#FAA500', '#6050A8', 'Amperios (A)');
 
 var ctx3 = document.getElementById('potenciaChart').getContext('2d');
-var potenciaChart = createChart3V(ctx3, 'Potencia A', 'Potencia B', "Potencia C", "#FF0000", '#2667FF', '#888888', 'Vatios (W)');
+var potenciaChart = createChart3V(ctx3, 'Potencia A', 'Potencia B', "Potencia C", "#2667FF", '#FAA500', '#6050A8', 'Vatios (W)');
 
 
 setInterval(fetchDataAndDrawChart, 5000); 
