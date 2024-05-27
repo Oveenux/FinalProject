@@ -82,9 +82,28 @@ function tituloEncabezados(titulo){
         titulo = 'Luminosidad';
     } else if (titulo === 'TIMESTAMP') {
         titulo = 'Fecha';
-    } else {
+    } else if (titulo === 'VV'){
         titulo = 'Viento';
-    }
+    } else if (titulo === 'VA'){
+        titulo = 'Voltaje A';
+    } else if (titulo === 'VB'){
+        titulo = 'Voltaje B';
+    }else if (titulo === 'VC'){
+        titulo = 'Voltaje C';
+    } else if (titulo === 'IA'){
+        titulo = 'Corriente A';
+    } else if (titulo === 'IB'){
+        titulo = 'Corriente B';
+    } else if (titulo === 'IC'){
+        titulo = 'Corriente C';
+    } else if (titulo === 'PA'){
+        titulo = 'Potencia A';
+    } else if (titulo === 'PB'){
+        titulo = 'Potencia C';
+    } else if (titulo === 'PC'){
+        titulo = 'Potencia C';
+    } 
+
     return titulo
 }
 
@@ -267,6 +286,51 @@ function crearGrafica(data, estampa, key) {
         createChart(ctx, titulo, estampa, data.VV, '#6050A860', '#6050A8','Velocidad (m/s)');
         color = '#6050A885';
         imagV = 'viento.png';
+    } else if (titulo === 'VA'){
+        titulo = 'Voltaje A';
+        color = '#2667FF85'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.VA, '#2667FF60', '#2667FF','Voltios (V)');
+    } else if (titulo === 'VB'){
+        titulo = 'Voltaje B';
+        color = '#2667FF85'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.VB, '#2667FF60', '#2667FF','Voltios (V)');
+    }else if (titulo === 'VC'){
+        titulo = 'Voltaje C';
+        color = '#2667FF85'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.VC, '#2667FF60', '#2667FF','Voltios (V)');
+    } else if (titulo === 'IA'){
+        titulo = 'Corriente A';
+        color = '#FAA50085'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.IA, '#FAA50060', '#FAA500','Amperios (A)');
+    } else if (titulo === 'IB'){
+        titulo = 'Corriente B';
+        color = '#FAA50085'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.IB, '#FAA50060', '#FAA500','Amperios (A)');
+    } else if (titulo === 'IC'){
+        titulo = 'Corriente C';
+        color = '#FAA50085'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.IC, '#FAA50060', '#FAA500','Amperios (A)');
+    } else if (titulo === 'PA'){
+        titulo = 'Potencia A';
+        color = '#6050A885'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.PA, '#6050A860', '#6050A8','Vatios (W)');
+    } else if (titulo === 'PB'){
+        titulo = 'Potencia C';
+        color = '#6050A885'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.PB, '#6050A860', '#6050A8','Vatios (W)');
+    } else if (titulo === 'PC'){
+        titulo = 'Potencia C';
+        color = '#6050A885'
+        imagV = 'energy.png';
+        createChart(ctx, titulo, estampa, data.PC, '#6050A860', '#6050A8','Vatios (W)');
     } 
 
     return [canvas, color, imagV];

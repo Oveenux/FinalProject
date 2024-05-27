@@ -169,7 +169,7 @@ def search_data():
                 valores_checkbox.append(valor)
 
         if len(valores_checkbox) == 0:
-            valores_checkbox = ["TEMP","TEMPNEV","HUM","HUMNEV","LUX","VV"]
+            valores_checkbox = ["TEMP","TEMPNEV","HUM","HUMNEV","LUX","VV","VA","VB","VC","IA","IB","IC","PA","PB","PC"]
         
         columnas_sql = ', '.join(valores_checkbox)
 
