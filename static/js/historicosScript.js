@@ -99,7 +99,7 @@ function tituloEncabezados(titulo){
     } else if (titulo === 'PA'){
         titulo = 'Potencia A';
     } else if (titulo === 'PB'){
-        titulo = 'Potencia C';
+        titulo = 'Potencia B';
     } else if (titulo === 'PC'){
         titulo = 'Potencia C';
     } 
