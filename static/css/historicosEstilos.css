@@ -429,3 +429,36 @@ button[type="submit"]:hover {
     max-width: 70%;
     height: auto;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    width: 160px;
+    margin-top: 1px;
+    display: none;
+    position: absolute;
+    background-color: #000;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 2px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #88B14B;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
