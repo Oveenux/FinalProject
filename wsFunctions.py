@@ -3,6 +3,11 @@ from flask import jsonify, request
 import mysql.connector
 import random
 import time
+from datetime import datetime
+import zoneinfo
+
+# Define la zona horaria de Colombia
+colombia_tz = zoneinfo.ZoneInfo("America/Bogota")
 
 # Functions for web server
 
@@ -17,9 +22,11 @@ def conectar():
 
 def generar_datos():
     # function for simulation of data
-    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    colombia_time = datetime.now(colombia_tz)
+    # Formatea el timestamp
+    timestamp = colombia_time.strftime('%Y-%m-%d %H:%M:%S')
     tempExt = random.randint(25,35)
-    tempNev = random.randint(1,5)  # Simulación de datos de temperatura
+    tempNev = random.randint(1,5)  
     humedadExt = random.randint(50,59)
     humedadNev = random.randint(73,89)
     luminosidad = random.randint(1500,2500)
@@ -28,9 +35,10 @@ def generar_datos():
     return jsonify({"label": timestamp, "variables": variables})
 
 def generar_datosElectricos():
-    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    colombia_time = datetime.now(colombia_tz)
+    timestamp = colombia_time.strftime('%Y-%m-%d %H:%M:%S')
     VA = random.randint(110,120)
-    VB = random.randint(110,120)  # Simulación de datos de temperatura
+    VB = random.randint(110,120)  
     VC = random.randint(110,120)
     IA = random.randint(1,5)
     IB = random.randint(1,3)
