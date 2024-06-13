@@ -507,6 +507,7 @@ button[type="submit"]:hover {
     }
 
     .navbar {
+        margin-top: 5px;
         width: 100%;
     }
 
