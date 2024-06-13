@@ -30,7 +30,8 @@ def get_data():
 @app.route('/stream', methods = ['POST'])
 # Route for updating of charts
 def stream():
-    return func.actualizar_ultimoDato(datos = "TEMP, TEMPNEV, HUM, HUMNEV, LUX, VV")
+    return func.generar_datos()
+            #func.actualizar_ultimoDato(datos = "TEMP, TEMPNEV, HUM, HUMNEV, LUX, VV")
 
 @app.route('/get_ElectricalData', methods = ['POST'])
 # Route for initial charts data
@@ -40,7 +41,8 @@ def get_ElectricalData():
 @app.route('/stream_ElectricalData', methods = ['POST'])
 # Route for updating of charts
 def stream_ElectricalData():
-    return func.actualizar_ultimoDato(datos = "VA, VB, VC, IA, IB, IC, PA, PB, PC")
+    return func.generar_datosElectricos()
+            #func.actualizar_ultimoDato(datos = "VA, VB, VC, IA, IB, IC, PA, PB, PC")
 
 @app.route('/search_data', methods=['POST'])
 # Route for historical data search

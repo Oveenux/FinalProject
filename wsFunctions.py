@@ -17,16 +17,29 @@ def conectar():
 
 def generar_datos():
     # function for simulation of data
-    while True:
-        timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-        tempExt = random.randint(25,35)
-        tempNev = random.randint(1,5)  # Simulación de datos de temperatura
-        humedadExt = random.randint(50,59)
-        humedadNev = random.randint(73,89)
-        luminosidad = random.randint(30,80)
-        viento = random.randint(13,18)
-        yield f"data: {timestamp} {tempExt} {tempNev} {humedadExt} {humedadNev} {luminosidad} {viento}\n\n"
-        time.sleep(5)  # Enviar datos cada 5 segundos
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    tempExt = random.randint(25,35)
+    tempNev = random.randint(1,5)  # Simulación de datos de temperatura
+    humedadExt = random.randint(50,59)
+    humedadNev = random.randint(73,89)
+    luminosidad = random.randint(1500,2500)
+    viento = random.randint(13,18)
+    variables = [tempExt, tempNev, humedadExt, humedadNev, luminosidad, viento]
+    return jsonify({"label": timestamp, "variables": variables})
+
+def generar_datosElectricos():
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    VA = random.randint(110,120)
+    VB = random.randint(110,120)  # Simulación de datos de temperatura
+    VC = random.randint(110,120)
+    IA = random.randint(1,5)
+    IB = random.randint(1,3)
+    IC = random.randint(1,5)
+    PA = random.randint(2000,5000)
+    PB = random.randint(10000,12000)
+    PC = random.randint(5000,8000)
+    variables = [VA, VB, VC, IA, IB, IC, PA, PB, PC]
+    return jsonify({"label": timestamp, "variables": variables})
 
 def get_data():
     try:
@@ -138,7 +151,7 @@ def actualizar_ultimoDato(datos):
         cursor.close()
         conn.close()
 
-        return jsonify({"label": timestamp, "variables":variables}) 
+        return jsonify({"label": timestamp, "variables": variables}) 
         
     else:
         print("No hay nuevos datos")

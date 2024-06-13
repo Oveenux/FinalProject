@@ -118,11 +118,11 @@ function graficaInicial3V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, nu
     eliminarUltimoDato3V(chart,limiteLongitud)
 }
 
-function actualizarDatosGrafica3V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, limiteLongitud) {
+function actualizarDatosGrafica3V(chart, nuevoTiempo, nuevaVariable1, nuevaVariable2, nuevaVariable3,limiteLongitud) {
     chart.data.labels.push(nuevoTiempo);
     chart.data.datasets[0].data.push(nuevaVariable1);
     chart.data.datasets[1].data.push(nuevaVariable2);
-    chart.data.datasets[2].data.push(nuevaVariable2);
+    chart.data.datasets[2].data.push(nuevaVariable3);
     eliminarUltimoDato3V(chart,limiteLongitud)
 }
 
@@ -191,11 +191,14 @@ function fetchDataAndDrawChart() {
             }
 
             var estampa = data.label.split(" ");
-            var timestamp = estampa[4];
+            // var timestamp = estampa[4]; // --> Para base de datos
+            var timestamp = estampa[1];
             var variables = data.variables;
+            
             var VA = parseFloat(variables[0]);
             var VB = parseFloat(variables[1]);
             var VC = parseFloat(variables[2]);
+            console.log(VA, VB, VC)
             var IA = parseFloat(variables[3]);
             var IB = parseFloat(variables[4]);
             var IC = parseFloat(variables[5]);
@@ -203,7 +206,8 @@ function fetchDataAndDrawChart() {
             var PB = parseFloat(variables[7]);
             var PC = parseFloat(variables[8]);
 
-            actualizarMarcadores(variables, unidades)
+            let marcadores = [VA, IA, PA, VB, IB, PB, VC, IC, PC]
+            actualizarMarcadores(marcadores, unidades)
 
             actualizarDatosGrafica3V(voltajeChart, timestamp, VA, VB, VC, 10);
             actualizarDatosGrafica3V(corrienteChart, timestamp, IA, IB, IC, 10);

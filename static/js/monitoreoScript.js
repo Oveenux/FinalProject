@@ -249,7 +249,8 @@ function fetchDataAndDrawChart() {
             }
 
             var estampa = data.label.split(" ");
-            var timestamp = estampa[4];
+            // var timestamp = estampa[4]; // --> Para base de datos
+            var timestamp = estampa[1];
             var variables = data.variables;
             var tempExt = parseFloat(variables[0]);
             var tempNev = parseFloat(variables[1]);

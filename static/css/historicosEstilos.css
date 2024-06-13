@@ -469,7 +469,8 @@ button[type="submit"]:hover {
     body {
         display: flex;
         flex-direction: column;
-        width: 100vw;
+        width: 100%;
+        margin: 0;
     }
     
     .container {
@@ -486,5 +487,40 @@ button[type="submit"]:hover {
 
     #app {
         width: 100vw;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    h1 {
+        color: #fff;
+    }
+
+    .barheader {
+        background-color: #343a40;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar {
+        width: 100%;
+    }
+
+    h2 {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .left-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .container-form {
+        width: 80%;
     }
 }
