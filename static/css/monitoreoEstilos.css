@@ -5,6 +5,10 @@ body {
     background-color: #FFF;
 }
 
+.barheader {
+    background-color: #fff;
+}
+
 /* Estilos para la imagen */
 .logo {
     float: left; /* Alinear a la izquierda */
@@ -23,7 +27,7 @@ body {
 }
 
 .navbarC {
-    width: 40%;
+    width: 50%;
     height: auto;
     display: flex;
     justify-content: end;
@@ -171,4 +175,63 @@ canvas {
     width: 100%;
     height: 100%;
     border: 1px solid #ccc;
+}
+
+/* Estilos responsive */
+@media (max-width: 650px) {
+
+    body {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .barheader {
+        background-color: #343a40;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+    }
+
+    .infoGrid-container-2 {
+        display: none;
+    }
+
+    .grid-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .logo {
+        display: none;
+    }
+
+    h1 {
+        color: #fff;
+    }
+
+    .navbar {
+        width: 90%;
+        justify-content: center;
+    }
+
+    .navbarC {
+        justify-content: space-between;
+        width: 100%;
+        margin: 0;
+    }
+
+    .navbarC button {
+        margin: 3px;
+    }
 }

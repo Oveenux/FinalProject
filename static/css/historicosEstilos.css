@@ -462,3 +462,29 @@ button[type="submit"]:hover {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+
+/* Estilos responsive */
+@media (max-width: 600px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #tabla-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100vw;
+    }
+
+    #app {
+        width: 100vw;
+    }
+}

@@ -162,3 +162,62 @@ canvas {
     height: 100%;
     border: 1px solid #ccc;
 }
+
+/* Estilos responsive */
+@media (max-width: 600px) {
+
+    body {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .barheader {
+        background-color: #343a40;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+    }
+
+    .infoGrid-container-2 {
+        display: none;
+    }
+
+    .grid-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .logo {
+        display: none;
+    }
+
+    h1 {
+        color: #fff;
+    }
+
+    .navbar {
+        width: 90%;
+        justify-content: center;
+    }
+
+    .navbarC {
+        justify-content: space-between;
+        width: 100%;
+        margin: 0;
+    }
+
+    .navbarC button {
+        margin: 3px;
+    }
+}
